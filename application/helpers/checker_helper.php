@@ -21,10 +21,8 @@ if (!function_exists('check_login')) {
   }
 }
 
-if(!function_exists("countPengajuanBaru")){
-  function countPengajuanBaru(){
-    // $CI = &get_instance();
-    // $CI->load->model('Layanan/ModelPengajuanLayanan');
-    // return $CI->ModelPengajuanLayanan->JumlahPengajuanBaru();
+if(!function_exists("activeMenu")){
+  function activeMenu(string $menu, string $value){
+    return $menu == $value ? "active" : "";
   }
 }

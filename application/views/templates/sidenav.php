@@ -1,110 +1,219 @@
-<!-- Brand Logo -->
-<a href="<?= base_url("dashboard"); ?>" class="brand-link text-center navbar-dark">
-  <img src="<?= base_url(); ?>assets/images/logo-white.png" alt="Girl with books" width="150" class="img-fluid">
-</a>
+<div class="sidebar sidebar-style-2">
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <div class="user">
+                <div class="avatar-sm float-left mr-2">
+                    <img src="<?= base_url('assets/img/profile.jpg'); ?>" alt="..." class="avatar-img rounded-circle">
+                </div>
+                <div class="info">
+                    <a>
+                        <span>
+                            Admin
+                            <span class="user-level">Administrator</span>
+                        </span>
+                    </a>
+                    <div class="clearfix"></div>
 
-<!-- Sidebar -->
-<div id="slide-out" class="sidebar">
-  <!-- Sidebar user panel (optional) -->
-  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-    <div class="image">
-      <img src="<?= base_url("assets/"); ?>dist/img/default-avatar.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+            </div>
+            <ul class="nav nav-primary">
+                <li class="nav-item <?= activeMenu("dashboard", isset($active) ? $active : ''); ?>">
+                    <a href="widgets.html">
+                        <i class="fas fa-home"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Pengaduan</h4>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#base">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Base</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="base">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="components/avatars.html">
+                                    <span class="sub-item">Avatars</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/buttons.html">
+                                    <span class="sub-item">Buttons</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/gridsystem.html">
+                                    <span class="sub-item">Grid System</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/panels.html">
+                                    <span class="sub-item">Panels</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/notifications.html">
+                                    <span class="sub-item">Notifications</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/sweetalert.html">
+                                    <span class="sub-item">Sweet Alert</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/font-awesome-icons.html">
+                                    <span class="sub-item">Font Awesome Icons</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/simple-line-icons.html">
+                                    <span class="sub-item">Simple Line Icons</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/flaticons.html">
+                                    <span class="sub-item">Flaticons</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="components/typography.html">
+                                    <span class="sub-item">Typography</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#sidebarLayouts">
+                        <i class="fas fa-th-list"></i>
+                        <p>Sidebar Layouts</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="sidebarLayouts">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="sidebar-style-1.html">
+                                    <span class="sub-item">Sidebar Style 1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="overlay-sidebar.html">
+                                    <span class="sub-item">Overlay Sidebar</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="compact-sidebar.html">
+                                    <span class="sub-item">Compact Sidebar</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="static-sidebar.html">
+                                    <span class="sub-item">Static Sidebar</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="icon-menu.html">
+                                    <span class="sub-item">Icon Menu</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item <?= activeMenu("pengaduan", isset($active) ? $active : ''); ?>">
+                    <a href="widgets.html">
+                        <i class="la flaticon-chat-4"></i>
+                        <p>Form Pengaduan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#forms">
+                        <i class="fas fa-pen-square"></i>
+                        <p>Forms</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="forms">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="forms/forms.html">
+                                    <span class="sub-item">Basic Form</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#tables">
+                        <i class="fas fa-table"></i>
+                        <p>Tables</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="tables">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="tables/tables.html">
+                                    <span class="sub-item">Basic Table</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/datatables.html">
+                                    <span class="sub-item">Datatables</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#maps">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Maps</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="maps">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="maps/jqvmap.html">
+                                    <span class="sub-item">JQVMap</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="collapse" href="#charts">
+                        <i class="far fa-chart-bar"></i>
+                        <p>Charts</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="charts">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="charts/charts.html">
+                                    <span class="sub-item">Chart Js</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="charts/sparkline.html">
+                                    <span class="sub-item">Sparkline</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="widgets.html">
+                        <i class="fas fa-desktop"></i>
+                        <p>Widgets</p>
+                        <span class="badge badge-success">4</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="info">
-      <?php $username = $this->session->userdata('username'); ?>
-      <?php $level = $this->session->userdata('id_level'); ?>
-      <a href="#" class="d-block"><?= $username; ?></a>
-    </div>
-  </div>
-
-  <!-- Sidebar Menu -->
-  <nav class="mt-2">
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-header">Beranda</li>
-          <li class="nav-item has-treeview <?= $active == "dashboard" ? " menu-open" : ""; ?>">
-            <a href="<?= base_url("dashboard"); ?>" class="nav-link <?= $active == "dashboard" ? "active" : ""; ?>">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">Layanan</li>
-          <li class="nav-item">
-            <a href="<?= base_url("layanan/"); ?>" class="nav-link <?= $active == "data-layanan" ? "active" : ""; ?>">
-              <i class="nav-icon fa fa-list-alt"></i>
-              <p>
-                Data Layanan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url("layanan/pengajuan"); ?>" class="nav-link <?= $active == "data-layanan-pengajuan" ? "active" : ""; ?>">
-              <i class="nav-icon fa fa-paste"></i>
-              <p>
-                Pengajuan <span class="badge badge-light" style="padding: 5px;"><?= countPengajuanBaru() ?></span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">Bantuan Pemerintah</li>
-          <li class="nav-item">
-            <a href="<?= base_url("bantuan/"); ?>" class="nav-link <?= $active == "data-bantuan" ? "active" : ""; ?>">
-              <i class="nav-icon fa fa-archive"></i>
-              <p>
-                Data Bantuan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url("bantuan/penerima"); ?>" class="nav-link <?= $active == "data-bantuan-penerima" ? "active" : ""; ?>">
-              <i class="nav-icon fa fa-sign-language"></i>
-              <p>
-                Penerima Bantuan
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">Kependudukan</li>
-          <li class="nav-item has-treeview <?= $active == "data-keluarga" ? " menu-open" : ""; ?>">
-            <a href="<?= base_url("keluarga/"); ?>" class="nav-link <?= $active == "data-keluarga" ? "active" : ""; ?>">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Data KK
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview <?= $active == "data-penduduk" ? " menu-open" : ""; ?>">
-            <a href="<?= base_url("penduduk/"); ?>" class="nav-link <?= $active == "data-penduduk" ? "active" : ""; ?>">
-              <i class="nav-icon fas fa-address-card"></i>
-              <p>
-                Data Penduduk
-              </p>
-            </a>
-          </li>
-          <li class="nav-item has-treeview <?= $active == "data-akun" ? " menu-open" : ""; ?>">
-            <a href="<?= base_url("penduduk/akun"); ?>" class="nav-link <?= $active == "data-akun" ? "active" : ""; ?>">
-              <i class="nav-icon fas fa-mobile"></i>
-              <p>
-                Pengguna Aplikasi
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <p>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <p>
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </ul>
-  </nav>
 </div>
