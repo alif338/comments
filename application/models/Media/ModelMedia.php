@@ -6,9 +6,5 @@ class ModelMedia extends CI_Model {
         $this->db->from($this->table_name);
         return $this->db->get()->result();
     }
-
-    public function insertData(array $data){
-        $this->db->insert("trans_aduan", $data);
-    }
 }
 ?>

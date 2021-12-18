@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-12">
 		<div class="card">
-			<form action="#" id="form-pengaduan" enctype="multipart">
+			<form action="#" id="form-pengaduan" method="post" enctype="multipart/form-data">
 				<div class="card-header">
 					<div class="card-title">Form Pengaduan</div>
 				</div>
@@ -72,36 +72,41 @@
 							<div class="form-group form-inline">
 								<div class="col-3">
 									<label for="inlineinput" class="col-form-label" style="text-align:left !important; display: block;">
+										Status
+									</label>
+								</div>
+								<div class="col-6">
+									<select required id="aduan-status" class="form-control">
+										<option value="<?= DITANGGAPI ?>"><?= DITANGGAPI ?></option>
+										<option value="<?= BLM_DITANGGAPI ?>"><?= BLM_DITANGGAPI ?></option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="form-group form-inline">
+								<div class="col-3">
+									<label for="inlineinput" class="col-form-label" style="text-align:left !important; display: block;">
 										Media	
 									</label>
 									<em class="text-danger text-small">*Media yang digunakan untuk pengaduan</em>
 								</div>
 								<div class="col-6">
 									<div class="selectgroup selectgroup-secondary selectgroup-pills">
-										<label class="selectgroup-item">
-											<input type="radio" name="icon-input" value="1" class="selectgroup-input" checked="">
-											<span class="selectgroup-button selectgroup-button-icon">
-												<i class="fab fa-twitter" data-toggle="tooltip" data-placement="top" title="Twitter"></i>
-											</span>
-										</label>
-										<label class="selectgroup-item">
-											<input type="radio" name="icon-input" value="2" class="selectgroup-input">
-											<span class="selectgroup-button selectgroup-button-icon">
-												<i class="fab fa-instagram" data-toggle="tooltip" data-placement="top" title="Instagram"></i>
-											</span>
-										</label>
-										<label class="selectgroup-item">
-											<input type="radio" name="icon-input" value="3" class="selectgroup-input">
-											<span class="selectgroup-button selectgroup-button-icon">
-												<i class="fab fa-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"></i>
-											</span>
-										</label>
-										<label class="selectgroup-item">
-											<input type="radio" name="icon-input" value="4" class="selectgroup-input">
-											<span class="selectgroup-button selectgroup-button-icon">
-												<i class="fas fa-grip-horizontal" data-toggle="tooltip" data-placement="top" title="Lainnya"></i>
-											</span>
-										</label>
+										<?php
+											$i = 0;
+											foreach($media as $val){
+										?>
+											<label class="selectgroup-item">
+												<input type="radio" name="icon-input" value="<?= $val->media_id; ?>" class="selectgroup-input" <?= $i == 0 ? "checked" : "" ?>>
+												<span class="selectgroup-button selectgroup-button-icon">
+													<i class="<?= $val->media_icon; ?>" data-toggle="tooltip" data-placement="top" title="Twitter"></i>
+												</span>
+											</label>
+										<?php
+												$i++;
+											}
+										?>
 									</div>
 								</div>
 							</div>
@@ -122,10 +127,21 @@
 						<div class="col-12">
 							<div class="form-group form-inline">
 								<div class="col-3">
-									Gambar
+									Gambar<br>
+									<em class="text-danger text-small">*Rekomendasi ukuran : <b>640px X 426px</b></em>
 								</div>
 								<div class="col-6">
-									<input type="file" id="aduan-gambar" class="form-control">
+									<input type="file" required id="aduan-gambar" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="form-group form-inline">
+								<div class="col-3">
+									Keterangan
+								</div>
+								<div class="col-6">
+									<textarea id="aduan-keterangan" placeholder="Keterangan lain" class="form-control" rows="6" style="width: 100%;"></textarea>
 								</div>
 							</div>
 						</div>

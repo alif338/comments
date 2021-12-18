@@ -1,4 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
 <script>
     $("#form-pengaduan").submit(function(e) {
         e.preventDefault();
@@ -15,10 +14,11 @@
         form.append("aduan_tanggal", $("#aduan-tanggal").val());
         form.append("aduan_pemohon", $("#aduan-pemohon").val());
         form.append("aduan_fitur", $("#aduan-fitur").val());
+        form.append("aduan_status", $("#aduan-status").val());
+        form.append("aduan_keterangan", $("#aduan-keterangan").val());
+        form.append("aduan_gambar", document.getElementById("aduan-gambar").files[0]);
         form.append("media_id", $("input[name='icon-input']:checked").val());
         form.append("pic_id", $("#aduan-pic").val());
-
-
         
         $.ajax({
             type: "POST",
@@ -29,7 +29,23 @@
             cache: false,
             processData: false,
             success: function(result) {
-                Swal.fire("Berhasil", result.message, "success");
+                var content = {};
+                content.message = result.message;
+                content.title = 'Berhasil';
+                content.icon = 'fa fa-check';
+                content.url = '<?= base_url("pengaduan/show"); ?>';
+
+                Swal.close();
+                $.notify(content,{
+                    type: "success",
+                    placement: {
+                        from: "bottom",
+                        align: "right"
+                    },
+                    time: 1000,
+                    delay: 0,
+                });
+                $("#form-pengaduan").trigger("reset");
             },
             error: function(error) {
                 if (error.status == 400) {

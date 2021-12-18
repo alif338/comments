@@ -92,3 +92,6 @@ defined("KELOMPOK") || define("KELOMPOK", "Kelompok Orang");
 defined("KOMENTAR") || define("KOMENTAR", "Kolom Komentar");
 defined("DM") || define("DM", "DM");
 defined("LAINNYA") || define("LAINNYA", "Media Lainnya");
+
+defined("DITANGGAPI") || define("DITANGGAPI", "SUDAH DITANGGAPI");
+defined("BLM_DITANGGAPI") || define("BLM_DITANGGAPI", "BELUM DITANGGAPI");
