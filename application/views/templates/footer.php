@@ -1,7 +1,7 @@
-<!-- /.content-wrapper -->
-<footer class="main-footer">
-  Sistem Desa Cileles <strong> 2021 </strong>
-  <div class="float-right d-none d-sm-inline-block">
-    <strong>v1.0</strong>
+<footer class="footer">
+  <div class="container-fluid">
+    <div class="copyright ml-auto">
+      2021 made with <i class="fa fa-heart heart text-danger"></i> by <a href="#">Kiki</a>
+    </div>              
   </div>
 </footer>

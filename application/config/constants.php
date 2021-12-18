@@ -85,3 +85,10 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 defined("JUDUL") || define("JUDUL", "Rekap");
+defined("INDV") || define("INDV", "Individu");
+defined("HUKUM") || define("HUKUM", "Badan Hukum");
+defined("KELOMPOK") || define("KELOMPOK", "Kelompok Orang");
+
+defined("KOMENTAR") || define("KOMENTAR", "Kolom Komentar");
+defined("DM") || define("DM", "DM");
+defined("LAINNYA") || define("LAINNYA", "Media Lainnya");

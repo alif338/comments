@@ -18,12 +18,12 @@
             </div>
             <ul class="nav nav-primary">
                 <li class="nav-item <?= activeMenu("dashboard", isset($active) ? $active : ''); ?>">
-                    <a href="widgets.html">
+                    <a href="<?= base_url('/dashboard') ?>">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-section">
+                <li class="nav-section <?= activeMenu("pengaduan", isset($active) ? $active : ''); ?>">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
@@ -127,7 +127,7 @@
                     </div>
                 </li>
                 <li class="nav-item <?= activeMenu("pengaduan", isset($active) ? $active : ''); ?>">
-                    <a href="widgets.html">
+                    <a href="<?= base_url('/pengaduan') ?>">
                         <i class="la flaticon-chat-4"></i>
                         <p>Form Pengaduan</p>
                     </a>
