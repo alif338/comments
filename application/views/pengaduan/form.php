@@ -93,8 +93,8 @@
 										?>
 											<label class="selectgroup-item">
 												<input type="radio" name="icon-input" value="<?= $val->media_id; ?>" class="selectgroup-input" <?= $i == 0 ? "checked" : "" ?>>
-												<span class="selectgroup-button selectgroup-button-icon">
-													<i class="<?= $val->media_icon; ?>" data-toggle="tooltip" data-placement="top" title="<?= $val->media_nama ?>"></i>
+												<span  data-toggle="tooltip" data-placement="top" title="<?= $val->media_nama ?>" class="selectgroup-button selectgroup-button-icon">
+													<i class="<?= $val->media_icon; ?>"></i>
 												</span>
 											</label>
 										<?php

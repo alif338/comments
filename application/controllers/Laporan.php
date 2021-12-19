@@ -14,39 +14,84 @@ class Laporan extends CI_Controller {
 		$this->load->model("Pengaduan/ModelPengaduan");
 	}
 
-	public function index(){
+	public function export(){
 		try{
-			$m = date("m");
+			$year = date("Y");
+			$month = date("m");
 			$bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
-			$data = $this->ModelPengaduan->getData([])->result();
+			$periode = $this->input->get("periode");
+			$pic = $this->input->get("pic");
 
 			$spreadsheet = new Spreadsheet;
-			$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, $bulan[$m-1]);
+			$bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
+			$start = 1;
+			$limit = 12;
+			if($periode == "Bulan"){
+				$start = date("m");
+				$limit = date("m");
+			}
+			$index = 0;
+			for($i = $start; $i <= $limit; $i++){
+				$myWorkSheet = new \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet($spreadsheet, $bulan[$i-1]);
+				$spreadsheet->addSheet($myWorkSheet, $index);
+				$spreadsheet->setActiveSheetIndex($index)
+				->setCellValue('A1', 'No')
+				->setCellValue('B1', 'Tanggal')
+				->setCellValue('C1', 'Pemohon')
+				->setCellValue('D1', 'Media')
+				->setCellValue('E1', 'Perihal')
+				->setCellValue('F1', 'PIC')
+				->setCellValue('G1', 'Status')
+				->setCellValue('H1', 'Gambar')
+				->setCellValue('I1', 'Keterangan');
 
-			$spreadsheet->addSheet($myWorkSheet, 0);
-			$spreadsheet->setActiveSheetIndex(0)
-			->setCellValue('A1', 'No')
-			->setCellValue('B1', 'Tanggal')
-			->setCellValue('C1', 'Pemohon')
-			->setCellValue('D1', 'Media')
-			->setCellValue('E1', 'Perihal')
-			->setCellValue('F1', 'PIC')
-			->setCellValue('G1', 'Status')
-			->setCellValue('H1', 'Keterangan');
+				$filterPic = $pic == 0 ? "<>" : "=";
+				$filter = [
+					"YEAR(trans_aduan.aduan_tanggal) =" => $year,
+					"trans_aduan.pic_id {$filterPic}" => $this->input->post("pic"),
+				];
 
-			$baris = 2;
-			foreach($data as $val) {
-				$spreadsheet->setActiveSheetIndex(0)
-				->setCellValue('A' . $baris, $baris-1)
-				->setCellValue('B' . $baris, date('j F Y', strtotime($val->aduan_tanggal)))
-				->setCellValue('C' . $baris, $val->aduan_pemohon)
-				->setCellValue('D' . $baris, $val->media_nama . " ({$val->aduan_fitur})")
-				->setCellValue('E' . $baris, $val->aduan_perihal)
-				->setCellValue('F' . $baris, $val->pic_nama)
-				->setCellValue('G' . $baris, $val->aduan_status)
-				->setCellValue('H' . $baris, $val->aduan_keterangan);
+				if($periode == "Bulan"){
+					$filter["MONTH(aduan_tanggal) ="] = $month;
+				}else{
+					$limitTanggal = cal_days_in_month(CAL_GREGORIAN, $i, $year);
+					$filter["trans_aduan.aduan_tanggal >="] = "{$year}-{$i}-01";
+					$filter["trans_aduan.aduan_tanggal <="] = "{$year}-{$i}-{$limitTanggal}";
+				}
 
-				$baris++;
+				$data = $this->ModelPengaduan->getData($filter, ["trans_aduan.aduan_tanggal" => "ASC"])->result();
+				
+
+				$baris = 2;
+				foreach($data as $val) {
+					$spreadsheet->setActiveSheetIndex($index)
+					->setCellValue('A' . $baris, $baris-1)
+					->setCellValue('B' . $baris, date('j F Y', strtotime($val->aduan_tanggal)))
+					->setCellValue('C' . $baris, $val->aduan_pemohon)
+					->setCellValue('D' . $baris, $val->media_nama . " ({$val->aduan_fitur})")
+					->setCellValue('E' . $baris, $val->aduan_perihal)
+					->setCellValue('F' . $baris, $val->pic_nama)
+					->setCellValue('G' . $baris, $val->aduan_status)
+					->setCellValue('H' . $baris, "Link Gambar")
+					->setCellValue('I' . $baris, $val->aduan_keterangan);
+
+					$spreadsheet->getActiveSheet()->getStyle('G' . $baris)->applyFromArray([
+						'fill' => [
+							'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+							'startColor' => ['rgb' => $val->aduan_status == DITANGGAPI ? '31CE36' : 'F25961']
+						],
+						"font" => [
+							'bold' => true,
+							'color' => ['rgb' => 'ffffff']
+						]
+					]);
+					$spreadsheet->getActiveSheet()->getCell('H' . $baris)->getHyperlink()->setUrl(base_url('/uploads/'.$val->aduan_gambar));
+					$spreadsheet->getActiveSheet()->getStyle('H' . $baris)->applyFromArray(["font" => ['underline' => true, 'color' => ['rgb' => '1572E8']]]);
+
+					$baris++;
+				}
+
+				$index++;
 			}
 
 			$writer = new Xlsx($spreadsheet);
@@ -60,7 +105,6 @@ class Laporan extends CI_Controller {
 		catch (\Exception $e) {
 	    	log_message('error', $e->getMessage());
 	    }
-		
 	}
 }
 ?>

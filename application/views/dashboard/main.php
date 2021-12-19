@@ -47,25 +47,6 @@
     </div>
   </div>
   <div class="col-sm-6 col-md-3">
-    <div class="card card-stats card-info card-round">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-4">
-            <div class="icon-big text-center">
-              <i class="flaticon-interface-6"></i>
-            </div>
-          </div>
-          <div class="col-8 col-stats">
-            <div class="numbers">
-              <p class="card-category" style="font-weight: bold;">Aduan Terbanyak</p>
-              <p class="card-category" id="aduan-terbanyak">Bidang Transportasi Darat</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-3">
     <div class="card card-stats card-success card-round">
       <div class="card-body ">
         <div class="row">
@@ -78,6 +59,25 @@
             <div class="numbers">
               <p class="card-category">Pengaduan Ditanggapi</p>
               <h4 class="card-title" id="jumlah-pengaduan-ditanggapi">0</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-md-3">
+    <div class="card card-stats card-info card-round">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            <div class="icon-big text-center">
+              <i class="flaticon-interface-6"></i>
+            </div>
+          </div>
+          <div class="col-8 col-stats">
+            <div class="numbers">
+              <p class="card-category" style="font-weight: bold;">Aduan Terbanyak</p>
+              <p class="card-category" id="aduan-terbanyak">Bidang Transportasi Darat</p>
             </div>
           </div>
         </div>
@@ -108,6 +108,19 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
+      <div class="card-header">
+        <div class="card-head-row">
+          <div class="card-title">Statistik Pengaduan</div>
+          <div class="card-tools">
+            <a id="export" href="<?= base_url('laporan/export?periode=tahun&pic=0') ?>" class="btn btn-info btn-border btn-round btn-sm mr-2">
+              <span class="btn-label">
+                <i class="fas fa-file-excel"></i>
+              </span>
+              Export Excel
+            </a>
+          </div>
+        </div>
+      </div>
       <div class="card-body">
         <div class="chart-container">
           <canvas id="multipleLineChart"></canvas>

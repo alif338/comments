@@ -43,7 +43,7 @@
 				$result["aduan_terbanyak"] = $this->handleAduanTerbanyak($filter);
 				$result["aduan_ditanggapi"] = $this->handleAduanDitanggapi($filter);
 				$result["media_terbanyak"] = $this->handleMediaTerbanyak($filter);
-				$result["jumlah_hari"] = cal_days_in_month(CAL_GREGORIAN, 2, $year);
+				$result["jumlah_hari"] = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 				$result["chart"] = $this->handleChartPeriod($filter, $this->input->post("periode"));
 
 				$message["data"] = $result;
@@ -94,11 +94,12 @@
 			$result = [];
 			for($i = 1; $i <= $limitPeriod; $i++){
 				if($period == "Bulan"){
-					$filter["aduan_tanggal"] = "{$y}-{$m}-{$i}";
+					$filter["trans_aduan.aduan_tanggal"] = "{$y}-{$m}-{$i}";
 					$result["labels"][] = "{$i}";
 				}else{
-					$filter["aduan_tanggal >="] = "{$y}-{$i}-01";
-					$filter["aduan_tanggal <="] = "{$y}-{$i}-{$limitPeriod}";
+					$limitTanggal = cal_days_in_month(CAL_GREGORIAN, $i, $y);
+					$filter["trans_aduan.aduan_tanggal >="] = "{$y}-{$i}-01";
+					$filter["trans_aduan.aduan_tanggal <="] = "{$y}-{$i}-{$limitTanggal}";
 					$result["labels"][] = $bulan[$i-1];
 				}
 

@@ -36,6 +36,7 @@
                 setAduanTerbanyak(result.data.aduan_terbanyak);
                 setJumlahPengaduan(result.data.jumlah_pengaduan);
                 setPengaduanDitanggapi(result.data.aduan_ditanggapi);
+                setParameter(periode, pic);
 
                 myMultipleLineChart.data.datasets[0].data = result.data.chart.active;
                 myMultipleLineChart.data.datasets[1].data = result.data.chart.non_active;
@@ -50,6 +51,10 @@
                 Swal.fire("Gagal", "Maaf server sedang sibuk, silahkan coba lagi nanti.", "error");
             }
         });
+	}
+
+	function setParameter(periode, pic){
+		$("#export").attr("href", "<?= base_url("laporan/export?") ?>periode="+periode+"&pic="+pic);
 	}
 
 	function setJumlahPengaduan(val){

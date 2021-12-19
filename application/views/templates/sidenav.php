@@ -42,7 +42,7 @@
                         <p>Data Pengaduan</p>
                     </a>
                 </li>
-                <li class="nav-section">
+                <!-- <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
@@ -53,7 +53,7 @@
                         <i class="fas fa-file-signature"></i>
                         <p>Buat Laporan</p>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>
