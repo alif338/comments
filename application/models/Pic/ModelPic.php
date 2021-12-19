@@ -4,7 +4,11 @@ class ModelPic extends CI_Model {
     public function getData(array $conditions){
         $this->db->where($conditions);
         $this->db->from($this->table_name);
-        return $this->db->get()->result();
+        return $this->db->get();
+    }
+
+    public function insertData(array $data){
+        $this->db->insert($this->table_name, $data);
     }
 }
 ?>

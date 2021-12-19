@@ -47,7 +47,7 @@
                     </span>
                     <h4 class="text-section">Laporan</h4>
                 </li>
-                <li class="nav-item <?= activeMenu("pengaduan", isset($active) ? $active : ''); ?>">
+                <li class="nav-item <?= activeMenu("laporan", isset($active) ? $active : ''); ?>">
                     <a href="<?= base_url('/pengaduan') ?>">
                         <i class="fas fa-file-signature"></i>
                         <p>Buat Laporan</p>

@@ -42,13 +42,7 @@
 									<em class="text-danger text-small">*Penanggung jawab terkait permasalahan</em>
 								</div>
 								<div class="col-6">
-									<select required id="aduan-pic" class="form-control">
-										<?php
-											foreach($pic as $value){
-												echo "<option value='{$value->pic_id}'>{$value->pic_nama}</option>";
-											}
-										?>
-									</select>
+									<input type="text" required id="aduan-pic" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -100,7 +94,7 @@
 											<label class="selectgroup-item">
 												<input type="radio" name="icon-input" value="<?= $val->media_id; ?>" class="selectgroup-input" <?= $i == 0 ? "checked" : "" ?>>
 												<span class="selectgroup-button selectgroup-button-icon">
-													<i class="<?= $val->media_icon; ?>" data-toggle="tooltip" data-placement="top" title="Twitter"></i>
+													<i class="<?= $val->media_icon; ?>" data-toggle="tooltip" data-placement="top" title="<?= $val->media_nama ?>"></i>
 												</span>
 											</label>
 										<?php
@@ -131,7 +125,7 @@
 									<em class="text-danger text-small">*Rekomendasi ukuran : <b>640px X 426px</b></em>
 								</div>
 								<div class="col-6">
-									<input type="file" required id="aduan-gambar" class="form-control">
+									<input type="file" accept="image/png, image/jpeg, , image/jpg" required id="aduan-gambar" class="form-control">
 								</div>
 							</div>
 						</div>

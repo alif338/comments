@@ -5,8 +5,8 @@
       <div class="form-group">
         <label for="time">Periode</label>
         <select class="form-control" id="time">
-          <option value="0">Harian</option>
-          <option value="0">Bulanan</option>
+          <option value="Bulan">Bulan</option>
+          <option value="Tahun">Tahun</option>
         </select>
       </div>
     </div>
@@ -30,15 +30,15 @@
     <div class="card card-stats card-primary card-round">
       <div class="card-body">
         <div class="row">
-          <div class="col-5">
+          <div class="col-4">
             <div class="icon-big text-center">
               <i class="flaticon-users"></i>
             </div>
           </div>
-          <div class="col-7 col-stats">
+          <div class="col-8 col-stats">
             <div class="numbers">
-              <p class="card-category">Visitors</p>
-              <h4 class="card-title">1,294</h4>
+              <p class="card-category">Jumlah Pengaduan</p>
+              <h4 class="card-title" id="jumlah-pengaduan">0</h4>
             </div>
           </div>
         </div>
@@ -49,15 +49,15 @@
     <div class="card card-stats card-info card-round">
       <div class="card-body">
         <div class="row">
-          <div class="col-5">
+          <div class="col-4">
             <div class="icon-big text-center">
               <i class="flaticon-interface-6"></i>
             </div>
           </div>
-          <div class="col-7 col-stats">
+          <div class="col-8 col-stats">
             <div class="numbers">
-              <p class="card-category">Subscribers</p>
-              <h4 class="card-title">1303</h4>
+              <p class="card-category">Aduan Terbanyak</p>
+              <p class="text-small" id="aduan-terbanyak">Bidang Transportasi Darat</p>
             </div>
           </div>
         </div>
@@ -68,15 +68,15 @@
     <div class="card card-stats card-success card-round">
       <div class="card-body ">
         <div class="row">
-          <div class="col-5">
+          <div class="col-4">
             <div class="icon-big text-center">
               <i class="flaticon-analytics"></i>
             </div>
           </div>
-          <div class="col-7 col-stats">
+          <div class="col-8 col-stats">
             <div class="numbers">
-              <p class="card-category">Sales</p>
-              <h4 class="card-title">$ 1,345</h4>
+              <p class="card-category">Pengaduan Ditanggapi</p>
+              <h4 class="card-title" id="jumlah-pengaduan-ditanggapi">0</h4>
             </div>
           </div>
         </div>
@@ -84,18 +84,18 @@
     </div>
   </div>
   <div class="col-sm-6 col-md-3">
-    <div class="card card-stats card-secondary card-round">
+    <div class="card card-stats card-default card-round">
       <div class="card-body ">
         <div class="row">
-          <div class="col-5">
+          <div class="col-4">
             <div class="icon-big text-center">
-              <i class="flaticon-success"></i>
+              <i class="la flaticon-twitter"></i>
             </div>
           </div>
-          <div class="col-7 col-stats">
+          <div class="col-8 col-stats">
             <div class="numbers">
-              <p class="card-category">Order</p>
-              <h4 class="card-title">576</h4>
+              <p class="card-category">Media Terbanyak</p>
+              <h4 class="card-title" id="jumlah-media">Twitter</h4>
             </div>
           </div>
         </div>

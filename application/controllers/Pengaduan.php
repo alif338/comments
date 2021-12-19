@@ -11,22 +11,90 @@
 		}
 
 		public function index() {
-			$data["pic"] = $this->ModelPic->getData([]);
-			$data["media"] = $this->ModelMedia->getData([]);
+			$data["pic"] = $this->ModelPic->getData([])->result();
+			$data["media"] = $this->ModelMedia->getData([])->result();
+			$data["autocomplete"] = json_encode(
+				array_column(
+					$this->ModelPic->getData([])->result_array(), 
+					"pic_nama"
+				),
+				true
+			);
 			$data["active"] = "pengaduan";
+			$data["css"] = "pengaduan/css-form";
 			$data["js"] = "pengaduan/js-form";
 			$data["content"] = "pengaduan/form";
 			$this->load->view('templates/content', $data);
 		}
 
 		public function show(){
-			$data["pengaduan"] = $this->ModelPengaduan->getData([]);
-			$data["pic"] = $this->ModelPic->getData([]);
-			$data["media"] = $this->ModelMedia->getData([]);
+			$data["pengaduan"] = $this->ModelPengaduan->getData([], ["trans_aduan.aduan_tanggal" => "DESC"])->result();
+			$data["pic"] = $this->ModelPic->getData([])->result();
+			$data["media"] = $this->ModelMedia->getData([])->result();
 			$data["active"] = "pengaduan-show";
 			$data["js"] = "pengaduan/js-show";
+			$data["css"] = "pengaduan/css-show";
 			$data["content"] = "pengaduan/show";
 			$this->load->view('templates/content', $data);
+		}
+
+		public function update(){
+			$message = [
+				"message" => "Status data pengaduan berhasil dirubah.",
+				"data" => null,
+				"success" => true,
+			];
+			$status = 200;
+			try{
+				$this->ModelPengaduan->updateData(
+					$this->input->post("aduan_id"), 
+					[
+						'aduan_status' => DITANGGAPI
+					]
+				);
+			}
+			catch (\Exception $e) {
+	            log_message('error', $e->getMessage());
+	            $message["message"] = "Terjadi merubah status data pengaduan, silahkan coba lagi";
+	            $message["success"] = false;
+	            $status = 400;
+	        }
+	        return $this->output->set_status_header($status)
+	        ->set_content_type('application/json')
+	        ->set_output(json_encode($message));
+		}
+
+		public function remove(){
+			$message = [
+				"message" => "Data pengaduan berhasil dihapus.",
+				"data" => null,
+				"success" => true,
+			];
+			$status = 200;
+			try{
+				$findData = $this->ModelPengaduan->getData([
+					'aduan_id' => $this->input->post("aduan_id")
+				]);
+				if(count($findData) > 0){
+					$path = "./uploads/".$findData[0]->aduan_gambar;
+					if(file_exists($path)){
+						unlink($path);
+					}
+				}
+
+				$this->ModelPengaduan->removeData([
+					'aduan_id' => $this->input->post("aduan_id")
+				]);
+			}
+			catch (\Exception $e) {
+	            log_message('error', $e->getMessage());
+	            $message["message"] = "Terjadi masalah menghapus data, silahkan coba lagi";
+	            $message["success"] = false;
+	            $status = 400;
+	        }
+	        return $this->output->set_status_header($status)
+	        ->set_content_type('application/json')
+	        ->set_output(json_encode($message));
 		}
 
 		public function store(){
@@ -55,7 +123,9 @@
 			        ->set_content_type('application/json')
 			        ->set_output(json_encode($message));
                 }
+
                 $upload_data = $this->upload->data();
+                $pic = $this->handlePic($this->input->post("pic_id"));
 
 				$this->ModelPengaduan->insertData([
 					"aduan_perihal" => $this->input->post("aduan_perihal"),
@@ -66,12 +136,11 @@
 					"aduan_keterangan" => $this->input->post("aduan_keterangan"),
 					"aduan_gambar" => $upload_data["file_name"],
 					"media_id" => $this->input->post("media_id"),
-					"pic_id" => $this->input->post("pic_id"),
+					"pic_id" => $pic,
 				]);
 			}
 			catch (\Exception $e) {
-	            error_log($e->getMessage());
-
+	            log_message('error', $e->getMessage());
 	            $message["message"] = "Terjadi masalah saat memproses data, silahkan coba lagi";
 	            $message["success"] = false;
 	            $status = 400;
@@ -80,6 +149,23 @@
 			return $this->output->set_status_header($status)
 	        ->set_content_type('application/json')
 	        ->set_output(json_encode($message));
+		}
+
+		private function handlePic($name){
+			$find = $this->ModelPic->getData([
+				"pic_nama" => $name
+			])->result();
+
+			if(count($find) == 0){
+				$this->ModelPic->insertData([
+					"pic_nama" => $name
+				]);
+
+				$find = $this->ModelPic->getData([
+					"pic_nama" => $name
+				])->result();
+			}
+			return $find[0]->pic_id;
 		}
 	}
 ?>

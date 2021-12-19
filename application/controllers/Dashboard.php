@@ -10,7 +10,7 @@
 		}
 
 		public function index() {
-			$data["pic"] = $this->ModelPic->getData([]);
+			$data["pic"] = $this->ModelPic->getData([])->result();
 			$data["active"] = "dashboard";
 			$data["content"] = "dashboard/main";
 			$this->load->view('templates/content', $data);
