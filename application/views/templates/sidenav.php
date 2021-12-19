@@ -3,7 +3,8 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="<?= base_url('assets/img/profile.jpg'); ?>" alt="..." class="avatar-img rounded-circle">
+                    <span class="avatar-title bg-danger rounded-circle border border-white text-light" style="font-weight: bold;">K
+                    </span>
                 </div>
                 <div class="info">
                     <a>
@@ -48,7 +49,7 @@
                     <h4 class="text-section">Laporan</h4>
                 </li>
                 <li class="nav-item <?= activeMenu("laporan", isset($active) ? $active : ''); ?>">
-                    <a href="<?= base_url('/pengaduan') ?>">
+                    <a href="<?= base_url('/laporan') ?>">
                         <i class="fas fa-file-signature"></i>
                         <p>Buat Laporan</p>
                     </a>
