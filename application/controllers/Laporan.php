@@ -26,22 +26,27 @@ class Laporan extends CI_Controller {
 			$spreadsheet->addSheet($myWorkSheet, 0);
 			$spreadsheet->setActiveSheetIndex(0)
 			->setCellValue('A1', 'No')
-			->setCellValue('B1', 'Nama')
-			->setCellValue('C1', 'Jenis Kelamin')
-			->setCellValue('D1', 'Tanggal Lahir')
-			->setCellValue('E1', 'Umur');
+			->setCellValue('B1', 'Tanggal')
+			->setCellValue('C1', 'Pemohon')
+			->setCellValue('D1', 'Media')
+			->setCellValue('E1', 'Perihal')
+			->setCellValue('F1', 'PIC')
+			->setCellValue('G1', 'Status')
+			->setCellValue('H1', 'Keterangan');
 
-			$kolom = 2;
+			$baris = 2;
 			foreach($data as $val) {
-
 				$spreadsheet->setActiveSheetIndex(0)
-				->setCellValue('A' . $kolom, $val->aduan_perihal)
-				->setCellValue('B' . $kolom, $val->aduan_perihal)
-				->setCellValue('C' . $kolom, $val->aduan_perihal)
-				->setCellValue('D' . $kolom, date('j F Y', strtotime($val->aduan_tanggal)))
-				->setCellValue('E' . $kolom, $val->aduan_perihal);
+				->setCellValue('A' . $baris, $baris-1)
+				->setCellValue('B' . $baris, date('j F Y', strtotime($val->aduan_tanggal)))
+				->setCellValue('C' . $baris, $val->aduan_pemohon)
+				->setCellValue('D' . $baris, $val->media_nama . " ({$val->aduan_fitur})")
+				->setCellValue('E' . $baris, $val->aduan_perihal)
+				->setCellValue('F' . $baris, $val->pic_nama)
+				->setCellValue('G' . $baris, $val->aduan_status)
+				->setCellValue('H' . $baris, $val->aduan_keterangan);
 
-				$kolom++;
+				$baris++;
 			}
 
 			$writer = new Xlsx($spreadsheet);
