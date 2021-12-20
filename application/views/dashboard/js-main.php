@@ -8,20 +8,35 @@
 	});
 
 	$("#periode").change(function(){
+		if($(this).val() == "Tahun"){
+			$("#bulan").attr("disabled","disabled");
+		}else{
+			$("#bulan").removeAttr("disabled");
+		}
 		initializeData();
 	});
 
 	$("#pic").change(function(){
 		initializeData();
 	});
+	$("#bulan").change(function(){
+		initializeData();
+	});
+	$("#tahun").change(function(){
+		initializeData();
+	});
 
 	function initializeData(){
 		var periode = $("#periode").val();
 		var pic = $("#pic").val();
+		var bulan = $("#bulan").val();
+		var tahun = $("#tahun").val();
 
 		var form = new FormData();
         form.append("periode", periode);
         form.append("pic", pic);
+        form.append("bulan", bulan);
+        form.append("tahun", tahun);
 
 		$.ajax({
             type: "POST",
@@ -36,7 +51,7 @@
                 setAduanTerbanyak(result.data.aduan_terbanyak);
                 setJumlahPengaduan(result.data.jumlah_pengaduan);
                 setPengaduanDitanggapi(result.data.aduan_ditanggapi);
-                setParameter(periode, pic);
+                setParameter(periode, pic, bulan, tahun);
 
                 myMultipleLineChart.data.datasets[0].data = result.data.chart.active;
                 myMultipleLineChart.data.datasets[1].data = result.data.chart.non_active;
@@ -53,8 +68,8 @@
         });
 	}
 
-	function setParameter(periode, pic){
-		$("#export").attr("href", "<?= base_url("laporan/export?") ?>periode="+periode+"&pic="+pic);
+	function setParameter(periode, pic, bulan, tahun){
+		$("#export").attr("href", "<?= base_url("laporan/export?") ?>periode="+periode+"&pic="+pic+"&bulan="+bulan+"&tahun="+tahun);
 	}
 
 	function setJumlahPengaduan(val){
@@ -62,7 +77,11 @@
 	}
 
 	function setAduanTerbanyak(val){
-		$("#aduan-terbanyak").html(val.pic_nama + " <i>(" + val.jumlah + " pengaduan)</i>");
+		if(val == null){
+			$("#aduan-terbanyak").html("-");
+		}else{
+			$("#aduan-terbanyak").html(val.pic_nama + " <i>(" + val.jumlah + " pengaduan)</i>");
+		}
 	}
 
 	function setPengaduanDitanggapi(val){
@@ -70,8 +89,13 @@
 	}
 
 	function setMediaTerbanyak(val){
-		$("#icon-media").html("<i class='"+val.media_icon+"'></i>");
-		$("#nama-media").html(val.media_nama);
+		if(val == null){
+			$("#icon-media").html("<i class='fas fa-ellipsis-h'></i>");
+			$("#nama-media").html("-");
+		}else{
+			$("#icon-media").html("<i class='"+val.media_icon+"'></i>");
+			$("#nama-media").html(val.media_nama);
+		}
 	}
 
 	function initializeChart(){

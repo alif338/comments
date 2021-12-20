@@ -26,8 +26,8 @@
 			];
 			$status = 200;
 			try{
-				$month = date("m");
-				$year = date("Y");
+				$month = $this->input->post("bulan");
+				$year = $this->input->post("tahun");
 				$filterPic = $this->input->post("pic") == 0 ? "<>" : "=";
 				$filter = [
 					"YEAR(trans_aduan.aduan_tanggal) =" => $year,
@@ -44,7 +44,7 @@
 				$result["aduan_ditanggapi"] = $this->handleAduanDitanggapi($filter);
 				$result["media_terbanyak"] = $this->handleMediaTerbanyak($filter);
 				$result["jumlah_hari"] = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-				$result["chart"] = $this->handleChartPeriod($filter, $this->input->post("periode"));
+				$result["chart"] = $this->handleChartPeriod($filter, $this->input->post("periode"), $month, $year);
 
 				$message["data"] = $result;
 			}
@@ -84,9 +84,7 @@
 			)->num_rows();
 		}
 
-		private function handleChartPeriod($filter, $period){
-			$m = date("m");
-			$y = date("Y");
+		private function handleChartPeriod($filter, $period, $m, $y){
 			$bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
 
 			$limitPeriod = $period == "Bulan" ? cal_days_in_month(CAL_GREGORIAN, $m, $y) : 12;

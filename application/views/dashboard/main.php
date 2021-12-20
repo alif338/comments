@@ -1,7 +1,7 @@
 <!-- Card -->
 <div class="card">
   <div class="card-body row">
-    <div class="col-6">
+    <div class="col-3">
       <div class="form-group">
         <label for="periode">Periode</label>
         <select class="form-control" id="periode">
@@ -10,7 +10,38 @@
         </select>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-3">
+      <div class="form-group">
+        <label for="bulan">Bulan</label>
+        <select class="form-control" id="bulan">
+          <option value="1">Januari</option>
+          <option value="2">Februari</option>
+          <option value="3">Maret</option>
+          <option value="4">April</option>
+          <option value="5">Mei</option>
+          <option value="6">Juni</option>
+          <option value="7">Juli</option>
+          <option value="8">Agustus</option>
+          <option value="9">September</option>
+          <option value="10">Oktober</option>
+          <option value="11">November</option>
+          <option value="12">Desember</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-group">
+        <label for="tahun">Tahun</label>
+        <select class="form-control" id="tahun">
+          <?php
+            for($i=date("Y"); $i > 2000; $i--){
+              echo "<option value='{$i}'>{$i}</option>";
+            }
+          ?>
+        </select>
+      </div>
+    </div>
+    <div class="col-3">
       <div class="form-group">
         <label for="pic">PIC</label>
         <select class="form-control" id="pic">

@@ -16,8 +16,8 @@ class Laporan extends CI_Controller {
 
 	public function export(){
 		try{
-			$year = date("Y");
-			$month = date("m");
+			$month = $this->input->get("bulan");
+			$year = $this->input->get("tahun");
 			$bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
 			$periode = $this->input->get("periode");
 			$pic = $this->input->get("pic");
@@ -27,8 +27,8 @@ class Laporan extends CI_Controller {
 			$start = 1;
 			$limit = 12;
 			if($periode == "Bulan"){
-				$start = date("m");
-				$limit = date("m");
+				$start = $month;
+				$limit = $month;
 			}
 			$index = 0;
 			for($i = $start; $i <= $limit; $i++){
