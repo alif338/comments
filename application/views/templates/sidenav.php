@@ -42,6 +42,18 @@
                         <p>Data Pengaduan</p>
                     </a>
                 </li>
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Akun</h4>
+                </li>
+                <li class="nav-item <?= activeMenu("pengaduan-show", isset($active) ? $active : ''); ?>">
+                    <a href="<?= base_url('/auth/logout') ?>">
+                        <i class="icon-logout"></i>
+                        <p>Logout</p>
+                    </a>
+                </li>
                 <!-- <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>

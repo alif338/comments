@@ -11,6 +11,9 @@
 		}
 
 		public function index() {
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
 			$data["pic"] = $this->ModelPic->getData([])->result();
 			$data["active"] = "dashboard";
 			$data["content"] = "dashboard/main";
@@ -19,6 +22,9 @@
 		}
 
 		public function chartdata(){
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
 			$message = [
 				"message" => "Data - data pengaduan berhasil didapatkan.",
 				"data" => null,

@@ -12,6 +12,9 @@
 		}
 
 		public function index() {
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
 			$data["pic"] = $this->ModelPic->getData([])->result();
 			$data["media"] = $this->ModelMedia->getData([])->result();
 			$data["autocomplete"] = json_encode(
@@ -29,6 +32,9 @@
 		}
 
 		public function show(){
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
 			$data["pengaduan"] = $this->ModelPengaduan->getData([], ["trans_aduan.aduan_tanggal" => "DESC"])->result();
 			$data["pic"] = $this->ModelPic->getData([])->result();
 			$data["media"] = $this->ModelMedia->getData([])->result();
@@ -40,6 +46,9 @@
 		}
 
 		public function update(){
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
 			$message = [
 				"message" => "Status data pengaduan berhasil dirubah.",
 				"data" => null,
@@ -66,6 +75,9 @@
 		}
 
 		public function remove(){
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
 			$message = [
 				"message" => "Data pengaduan berhasil dihapus.",
 				"data" => null,
@@ -75,7 +87,7 @@
 			try{
 				$findData = $this->ModelPengaduan->getData([
 					'aduan_id' => $this->input->post("aduan_id")
-				]);
+				])->result();
 				if(count($findData) > 0){
 					$path = "./uploads/".$findData[0]->aduan_gambar;
 					if(file_exists($path)){
@@ -99,6 +111,9 @@
 		}
 
 		public function store(){
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
 			$message = [
 				"message" => "Data pengaduan telah berhasil disimpan.",
 				"data" => null,

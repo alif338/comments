@@ -61,6 +61,6 @@ $route['bantuan/edit/(:num)'] = "bantuan/edit/$1";
 $route['confirm/(:any)'] = "login/confirm/$1";
 /* End Custom Routes */
 
-$route['default_controller'] = 'dashboard';
+$route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

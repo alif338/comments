@@ -16,6 +16,9 @@ class Laporan extends CI_Controller {
 
 	public function export(){
 		try{
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
 			$month = $this->input->get("bulan");
 			$year = $this->input->get("tahun");
 			$bulan = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];

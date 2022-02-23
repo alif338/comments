@@ -5,6 +5,18 @@
 -- HeidiSQL Version:             11.2.0.6213
 -- --------------------------------------------------------
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Dumping database structure for db_comments
+CREATE DATABASE IF NOT EXISTS `db_comments` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `db_comments`;
+
 -- Dumping structure for table db_comments.master_media
 CREATE TABLE IF NOT EXISTS `master_media` (
   `media_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -60,10 +72,12 @@ CREATE TABLE IF NOT EXISTS `trans_aduan` (
   KEY `FK__master_pic` (`pic_id`),
   CONSTRAINT `FK__master_media` FOREIGN KEY (`media_id`) REFERENCES `master_media` (`media_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK__master_pic` FOREIGN KEY (`pic_id`) REFERENCES `master_pic` (`pic_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table db_comments.trans_aduan: ~3 rows (approximately)
+-- Dumping data for table db_comments.trans_aduan: ~1 rows (approximately)
 /*!40000 ALTER TABLE `trans_aduan` DISABLE KEYS */;
+INSERT INTO `trans_aduan` (`aduan_id`, `media_id`, `pic_id`, `aduan_perihal`, `aduan_tanggal`, `aduan_pemohon`, `aduan_fitur`, `aduan_gambar`, `aduan_status`, `aduan_keterangan`, `created`, `updated`) VALUES
+	(39, 2, 2, 'Parkir LIar', '2021-12-20', 'Individu', 'DM', 'b1788be2a40efb103ccc911b4ef86a70.jpg', 'SUDAH DITANGGAPI', '', '2021-12-20 21:48:42', '2021-12-20 21:48:42');
 /*!40000 ALTER TABLE `trans_aduan` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
