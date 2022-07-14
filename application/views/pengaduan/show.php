@@ -73,10 +73,12 @@
                   <em class="text-bold">(<?= $val->aduan_fitur; ?>)</em>    
                 </td>
                 <td>
-                  <span class="badge badge-default">
-                    <i class="<?= $val->media_icon ?>"></i> 
-                    <?= $val->media_nama ?>
-                  </span>
+                  <a href="<?php echo prep_url($val->sosmed_link, 'url')?>">
+                    <span class="badge badge-default">
+                      <i class="<?= $val->media_icon ?>"></i> 
+                      <?= $val->media_nama ?>
+                    </span>
+                  </a>
                 </td>
                 <td><?= $val->pic_nama ?></td>
                 <td>
@@ -91,6 +93,7 @@
                     </button>
                     <div class="dropdown-menu">
                       <a class='dropdown-item' target="_blank" href='<?= base_url('./uploads/'.$val->aduan_gambar) ?>'><i class='fas fa-images text-warning'></i> Lihat Gambar</a>
+                      <a class='dropdown-item' href='<?= base_url('/pengaduan/edit/'.$val->aduan_id) ?>'><i class="fa fa-bars text-secondary"></i> Edit Data</a>
                       <a class='dropdown-item' href='#' onclick="confirmRemove(this)" data-id="<?= $val->aduan_id ?>" data-nama="<?= $val->aduan_perihal ?>">
                         <i class='fa fa-times text-danger'></i> Hapus Data
                       </a>

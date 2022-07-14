@@ -48,7 +48,7 @@
                     </span>
                     <h4 class="text-section">Akun</h4>
                 </li>
-                <li class="nav-item <?= activeMenu("pengaduan-show", isset($active) ? $active : ''); ?>">
+                <li class="nav-item <?= activeMenu("pengaduan-show", !isset($active) ? $active : ''); ?>">
                     <a href="<?= base_url('/auth/logout') ?>">
                         <i class="icon-logout"></i>
                         <p>Logout</p>

@@ -1,9 +1,12 @@
 <div class="row">
 	<div class="col-12">
 		<div class="card">
-			<form action="#" id="form-pengaduan" method="post" enctype="multipart/form-data">
+      <?php 
+        $data = $pengaduan[0];
+      ?>
+			<form action="#" id="form-pengaduan-edit" method="post" enctype="multipart/form-data">
 				<div class="card-header">
-					<div class="card-title">Form Pengaduan</div>
+					<div class="card-title">Edit Form Pengaduan</div>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -16,7 +19,7 @@
 									<em class="text-danger text-small">*Keterangan aduan perihal permasalahan</em>
 								</div>
 								<div class="col-6">
-									<input type="text" required class="form-control input-full" id="aduan-perihal" placeholder="Perihal Pengaduan">
+									<input type="text" value="<?= $data->aduan_perihal?>" required class="form-control input-full" id="aduan-perihal" placeholder="Perihal Pengaduan">
 								</div>
 							</div>
 						</div>
@@ -29,7 +32,7 @@
 									<em class="text-danger text-small">*Tanggal dilakukannya pengaduan</em>
 								</div>
 								<div class="col-4">
-									<input type="date" id="aduan-tanggal" required class="form-control input-full" id="inlineinput" placeholder="Tanggal Pengaduan">
+									<input type="date" value="<?= $data->aduan_tanggal?>"  id="aduan-tanggal" required class="form-control input-full" id="inlineinput" placeholder="Tanggal Pengaduan">
 								</div>
 							</div>
 						</div>
@@ -42,7 +45,7 @@
 									<em class="text-danger text-small">*Penanggung jawab terkait permasalahan</em>
 								</div>
 								<div class="col-6">
-									<input type="text" required id="aduan-pic" class="form-control">
+									<input type="text" value="<?= $data->aduan_fitur ?>" required id="aduan-pic" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -89,11 +92,11 @@
 									<div class="selectgroup selectgroup-secondary selectgroup-pills d-flex flex-column">
 										<div class='radio-group d-flex mb-2'>
 											<?php
-											$i = 0;
+											$i = 1;
 											foreach($media as $val){
 												?>
 											<label class="selectgroup-item">
-												<input type="radio" name="icon-input" value="<?= $val->media_id; ?>" class="selectgroup-input" <?= $i == 0 ? "checked" : "" ?>>
+												<input type="radio" name="icon-input" value="<?= $val->media_id; ?>" class="selectgroup-input" <?= $i == $data->media_id ? "checked" : "" ?>>
 												<span  data-toggle="tooltip" data-placement="top" title="<?= $val->media_nama ?>" class="selectgroup-button selectgroup-button-icon">
 													<i class="<?= $val->media_icon; ?>"></i>
 												</span>
@@ -103,7 +106,7 @@
 											}
 											?>
 										</div>
-										<input type="text" placeholder="link profile" required id="sosmed-link" class="form-control">
+										<input type="text" value="<?= $data->sosmed_link?>" placeholder="link profile" required id="sosmed-link" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -138,7 +141,7 @@
 									Keterangan
 								</div>
 								<div class="col-6">
-									<textarea id="aduan-keterangan" placeholder="Keterangan lain" class="form-control" rows="6" style="width: 100%;"></textarea>
+									<textarea id="aduan-keterangan" value="<?= $data->aduan_keterangan?>" placeholder="Keterangan lain" class="form-control" rows="6" style="width: 100%;"></textarea>
 								</div>
 							</div>
 						</div>

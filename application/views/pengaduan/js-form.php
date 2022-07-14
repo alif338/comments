@@ -24,6 +24,7 @@
         form.append("aduan_keterangan", $("#aduan-keterangan").val());
         form.append("aduan_gambar", document.getElementById("aduan-gambar").files[0]);
         form.append("media_id", $("input[name='icon-input']:checked").val());
+        form.append("sosmed_link", $("#sosmed-link").val());
         form.append("pic_id", $("#aduan-pic").val());
         
         $.ajax({
@@ -52,6 +53,7 @@
                     delay: 0,
                 });
                 $("#form-pengaduan").trigger("reset");
+                window.location.href = content.url;
             },
             error: function(error) {
                 if (error.status == 400) {

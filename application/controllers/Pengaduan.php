@@ -45,6 +45,20 @@
 			$this->load->view('templates/content', $data);
 		}
 
+		public function edit($id) {
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
+			$data["pengaduan"] = $this->ModelPengaduan->getData(['aduan_id'=> $id])->result();
+			$data["pic"] = $this->ModelPic->getData([])->result();
+			$data["media"] = $this->ModelMedia->getData([])->result();
+			$data["active"] = "pengaduan";
+			$data["css"] = "pengaduan/css-form";
+			$data["js"] = "pengaduan/js-form";
+			$data["content"] = "pengaduan/edit";
+			$this->load->view('templates/content', $data);
+		}
+
 		public function update(){
 			if(!$this->session->userdata('is_login')){
 				redirect('/', 'refresh');
@@ -152,6 +166,7 @@
 					"aduan_keterangan" => $this->input->post("aduan_keterangan"),
 					"aduan_gambar" => $upload_data["file_name"],
 					"media_id" => $this->input->post("media_id"),
+					"sosmed_link" => $this->input->post("sosmed_link"),
 					"pic_id" => $pic,
 				]);
 			}
