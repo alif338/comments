@@ -39,23 +39,40 @@
     function confirmUpdate(element){
         var id = $(element).attr("data-id");
         var nama = $(element).attr("data-nama");
+
         Swal.fire({
-            title: "Apakah anda yakin?",
+            title: "Konfirmasi",
             text: "Pengaduan dengan perihal \""+nama+"\" sudah ditanggapi",
+            html: `<div id="img-show"></div>`,
             showCancelButton: true,
             allowOutsideClick: false,
+            input: 'file',
+            inputValidator: (result) => {
+                return !result && 'Gambar diperlukan'
+            },
             cancelButtonColor: '#f25961',
             confirmButtonColor: '#31ce36',
-            confirmButtonText: 'Iya',
-            cancelButtonText: 'Tidak',       
+            confirmButtonText: 'Kirim',
+            cancelButtonText: 'Batal',       
         }).then((result) => {
             if (result.value) {
-                updateData(id);
+                updateData(id, result.value);
             }
+            console.log(result.value)
+            console.log(id, nama)
         });
+
+        const aduanGambar = document.getElementsByClassName("swal2-file")[0];
+        const imgShow = document.getElementById("img-show");
+        aduanGambar.onchange = function() {
+            const [file] = aduanGambar.files;
+            if (file) {
+                imgShow.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="${file.name}" class="img-fluid" style="width: 500px;">`;
+            }
+        };
     }
 
-    function updateData(id){
+    function updateData(id, image){
     	Swal.fire({
             title: "Mengirim...",
             text: "Mohon tunggu beberapa saat",
@@ -65,6 +82,7 @@
 
         var form = new FormData();
         form.append("aduan_id", id);
+        form.append("aduan_gambar", image);
         
         $.ajax({
             type: "POST",
