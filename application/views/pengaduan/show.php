@@ -82,9 +82,11 @@
                 </td>
                 <td><?= $val->pic_nama ?></td>
                 <td>
+                <a target=<?= $val->aduan_status == DITANGGAPI ? "_blank" : null ?> href=<?= $val->aduan_status == DITANGGAPI ?  base_url('./uploads/verifikasi/'.$val->verifikasi_gambar) : null ?>>
                   <span class='badge <?= $val->aduan_status == DITANGGAPI ? "badge-success" : "badge-danger" ?>'>
                     <i class="fa fa-check"></i> <?= $val->aduan_status ?>
                   </span>
+                </a>
                 </td>
                 <td>
                   <div class="btn-group">

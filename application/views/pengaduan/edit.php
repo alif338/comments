@@ -14,6 +14,18 @@
 							<div class="form-group form-inline">
 								<div class="col-3">
 									<label for="inlineinput" class="col-form-label" style="text-align:left !important; display: block;">
+										Pengaduan Id	
+									</label>
+								</div>
+								<div class="col-6">
+									<input type="text" value="<?= $data->aduan_id?>" disabled class="form-control" id="aduan-id" placeholder="Perihal Pengaduan">
+								</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="form-group form-inline">
+								<div class="col-3">
+									<label for="inlineinput" class="col-form-label" style="text-align:left !important; display: block;">
 										Kolom Konten / Aduan	
 									</label>
 									<em class="text-danger text-small">*Keterangan aduan perihal permasalahan</em>
@@ -73,10 +85,7 @@
 									</label>
 								</div>
 								<div class="col-6">
-									<select required id="aduan-status" class="form-control">
-										<option value="<?= DITANGGAPI ?>"><?= DITANGGAPI ?></option>
-										<option value="<?= BLM_DITANGGAPI ?>"><?= BLM_DITANGGAPI ?></option>
-									</select>
+									<input type="text" value="<?= $data->aduan_status ?>" disabled id="aduan-status" class="form-control">
 								</div>
 							</div>
 						</div>

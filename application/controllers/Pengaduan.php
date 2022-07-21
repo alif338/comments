@@ -54,7 +54,7 @@
 			$data["media"] = $this->ModelMedia->getData([])->result();
 			$data["active"] = "pengaduan";
 			$data["css"] = "pengaduan/css-form";
-			$data["js"] = "pengaduan/js-form";
+			$data["js"] = "pengaduan/js-form-edit";
 			$data["content"] = "pengaduan/edit";
 			$this->load->view('templates/content', $data);
 		}
@@ -108,6 +108,65 @@
 	        return $this->output->set_status_header($status)
 	        ->set_content_type('application/json')
 	        ->set_output(json_encode($message));
+		}
+
+		public function update_aduan() {
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
+			$message = [
+				"message" => "Status data pengaduan berhasil diupdate.",
+				"data" => null,
+				"success" => true,
+			];
+			$status = 200;
+
+			// Upload Gambar
+			$config['upload_path'] = './uploads/verifikasi/';
+			$config['allowed_types'] = 'jpeg|jpg|png';
+			$config['max_size'] = 2048;
+			$config['encrypt_name'] = true;
+
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('aduan_gambar'))
+			{
+				$status = 400;
+					$message["message"] = "Pastikan ukuran gambar dibawah 2MB dengan format .jpg atau .png";
+					$message["success"] = false;
+
+					return $this->output->set_status_header($status)
+			->set_content_type('application/json')
+			->set_output(json_encode($message));
+			}
+
+			$upload_data = $this->upload->data();
+			$pic = $this->handlePic($this->input->post("pic_id"));
+			try{
+				$this->ModelPengaduan->updateData(
+					$this->input->post("aduan_id"), 
+					[
+						"aduan_perihal" => $this->input->post("aduan_perihal"),
+						"aduan_tanggal" => $this->input->post("aduan_tanggal"),
+						"aduan_pemohon" => $this->input->post("aduan_pemohon"),
+						"aduan_fitur" => $this->input->post("aduan_fitur"),
+						"aduan_keterangan" => $this->input->post("aduan_keterangan"),
+						"aduan_gambar" => $upload_data["file_name"],
+						"media_id" => $this->input->post("media_id"),
+						"sosmed_link" => $this->input->post("sosmed_link"),
+						"pic_id" => $pic,
+					]
+				);
+			}
+			catch (\Exception $e) {
+							log_message('error', $e->getMessage());
+							$message["message"] = "Terjadi merubah status data pengaduan, silahkan coba lagi";
+							$message["success"] = false;
+							$status = 400;
+					}
+					return $this->output->set_status_header($status)
+					->set_content_type('application/json')
+					->set_output(json_encode($message));
 		}
 
 		public function remove(){

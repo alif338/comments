@@ -62,21 +62,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-12">
-							<div class="form-group form-inline">
-								<div class="col-3">
-									<label for="inlineinput" class="col-form-label" style="text-align:left !important; display: block;">
-										Status
-									</label>
-								</div>
-								<div class="col-6">
-									<select required id="aduan-status" class="form-control">
-										<option value="<?= DITANGGAPI ?>"><?= DITANGGAPI ?></option>
-										<option value="<?= BLM_DITANGGAPI ?>"><?= BLM_DITANGGAPI ?></option>
-									</select>
-								</div>
-							</div>
-						</div>
+					
 						<div class="col-12">
 							<div class="form-group form-inline">
 								<div class="col-3">

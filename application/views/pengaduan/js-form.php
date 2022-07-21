@@ -20,7 +20,7 @@
         form.append("aduan_tanggal", $("#aduan-tanggal").val());
         form.append("aduan_pemohon", $("#aduan-pemohon").val());
         form.append("aduan_fitur", $("#aduan-fitur").val());
-        form.append("aduan_status", $("#aduan-status").val());
+        form.append("aduan_status", "BELUM DITANGGAPI");
         form.append("aduan_keterangan", $("#aduan-keterangan").val());
         form.append("aduan_gambar", document.getElementById("aduan-gambar").files[0]);
         form.append("media_id", $("input[name='icon-input']:checked").val());
