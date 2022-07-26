@@ -7,7 +7,6 @@
     });
     $("#form-pengaduan").submit(function(e) {
         e.preventDefault();
-
         Swal.fire({
             title: "Mengirim...",
             text: "Mohon tunggu beberapa saat",
@@ -26,9 +25,8 @@
         form.append("media_id", $("input[name='icon-input']:checked").val());
         form.append("sosmed_link", $("#sosmed-link").val());
         form.append("pic_id", $("#aduan-pic").val());
-        
         $.ajax({
-            type: "POST",
+            method: "POST",
             url: "<?= base_url('pengaduan/store') ?>",
             data: form,
             dataType: "json",

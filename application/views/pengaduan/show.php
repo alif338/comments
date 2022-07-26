@@ -94,6 +94,7 @@
                       Opsi
                     </button>
                     <div class="dropdown-menu">
+                      <a class="dropdown-item" href='<?= base_url('/pengaduan/detail/'.$val->aduan_id)?>'><i class="fa fa-info-circle text-info"></i> Detail</a>
                       <a class='dropdown-item' target="_blank" href='<?= base_url('./uploads/'.$val->aduan_gambar) ?>'><i class='fas fa-images text-warning'></i> Lihat Gambar</a>
                       <a class='dropdown-item' href='<?= base_url('/pengaduan/edit/'.$val->aduan_id) ?>'><i class="fa fa-bars text-secondary"></i> Edit Data</a>
                       <a class='dropdown-item' href='#' onclick="confirmRemove(this)" data-id="<?= $val->aduan_id ?>" data-nama="<?= $val->aduan_perihal ?>">

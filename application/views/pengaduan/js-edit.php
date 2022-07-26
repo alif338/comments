@@ -25,11 +25,8 @@
     form.append("media_id", $("input[name='icon-input']:checked").val());
     form.append("sosmed_link", $("#sosmed-link").val());
     form.append("pic_id", $("#aduan-pic").val());
-
-    console.log("<?= base_url('pengaduan/edit/') ?>" + aduan_id)
-
     $.ajax({
-        type: "PUT",
+        method: "PUT",
         url: "<?= base_url('pengaduan/update_aduan') ?>",
         data: form,
         dataType: "json",
@@ -38,7 +35,6 @@
         processData: false,
         success: function(result) {
             var content = {};
-            console.log(result);
             content.message = result.message;
             content.title = 'Berhasil';
             content.icon = 'fa fa-check';

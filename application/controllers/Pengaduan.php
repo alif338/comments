@@ -45,6 +45,18 @@
 			$this->load->view('templates/content', $data);
 		}
 
+		public function detail($id) {
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
+			$data["pengaduan"] = $this->ModelPengaduan->getData(['aduan_id'=> $id])->result();
+			$data["active"] = "";
+			$data["css"] = "pengaduan/css-form";
+			$data["js"] = "pengaduan/js-form";
+			$data["content"] = "pengaduan/detail";
+			$this->load->view('templates/content', $data);
+		}
+
 		public function edit($id) {
 			if(!$this->session->userdata('is_login')){
 				redirect('/', 'refresh');
@@ -52,9 +64,16 @@
 			$data["pengaduan"] = $this->ModelPengaduan->getData(['aduan_id'=> $id])->result();
 			$data["pic"] = $this->ModelPic->getData([])->result();
 			$data["media"] = $this->ModelMedia->getData([])->result();
+			$data["autocomplete"] = json_encode(
+				array_column(
+					$this->ModelPic->getData([])->result_array(), 
+					"pic_nama"
+				),
+				true
+			);
 			$data["active"] = "pengaduan";
 			$data["css"] = "pengaduan/css-form";
-			$data["js"] = "pengaduan/js-form-edit";
+			$data["js"] = "pengaduan/js-edit";
 			$data["content"] = "pengaduan/edit";
 			$this->load->view('templates/content', $data);
 		}
@@ -121,28 +140,37 @@
 			];
 			$status = 200;
 
-			// Upload Gambar
-			$config['upload_path'] = './uploads/verifikasi/';
-			$config['allowed_types'] = 'jpeg|jpg|png';
-			$config['max_size'] = 2048;
-			$config['encrypt_name'] = true;
-
-			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload('aduan_gambar'))
-			{
-				$status = 400;
-					$message["message"] = "Pastikan ukuran gambar dibawah 2MB dengan format .jpg atau .png";
-					$message["success"] = false;
-
-					return $this->output->set_status_header($status)
-			->set_content_type('application/json')
-			->set_output(json_encode($message));
-			}
-
-			$upload_data = $this->upload->data();
-			$pic = $this->handlePic($this->input->post("pic_id"));
 			try{
+				// $findData = $this->ModelPengaduan->getData([
+				// 	'aduan_id' => $this->input->post("aduan_id")
+				// ])->result();
+				// $path = "./uploads/".$findData[0]->aduan_gambar;
+				// if(file_exists($path)){
+				// 	unlink($path);
+				// }
+				
+				// Upload Gambar
+				$config['upload_path'] = './uploads/verifikasi/';
+				$config['allowed_types'] = 'jpeg|jpg|png';
+				$config['max_size'] = 4096;
+				$config['encrypt_name'] = true;
+	
+				$this->load->library('upload', $config);
+	
+				if (!$this->upload->do_upload('aduan_gambar'))
+				{
+					$status = 400;
+						$message["message"] = "Pastikan ukuran gambar dibawah 2MB dengan format .jpg atau .png";
+						$message["success"] = false;
+	
+						return $this->output->set_status_header($status)
+				->set_content_type('application/json')
+				->set_output(json_encode($message));
+				}
+	
+				$upload_data = $this->upload->data();
+				$pic = $this->handlePic($this->input->post("pic_id"));
+
 				$this->ModelPengaduan->updateData(
 					$this->input->post("aduan_id"), 
 					[
