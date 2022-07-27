@@ -75,13 +75,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	//'port' => 3307, /* 3306 */
-	'port' => $_ENV['DB_PORT'], /* 3306 */
-	'dsn'	=> $_ENV['DB_DSN'], /* 'mysql:host=localhost;dbname=test' */
-	'hostname' => $_ENV['DB_HOST'], /* 'localhost' */
-	'username' => $_ENV['DB_USERNAME'], /* 'root' */
-	'password' => $_ENV['DB_PASSWORD'], /* 'root' */
-	'database' => $_ENV['DB_DATABASE'], /* 'test' */
-	'dbdriver' => $_ENV['DB_DRIVER'], /* 'mysqli' */
+	'port' => 5432, /* 3306 */
+	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=db_comments', /* 'mysql:host=localhost;dbname=test' */
+	'hostname' => 'localhost', /* 'localhost' */
+	'username' => 'postgres', /* 'root' */
+	'password' => 'root', /* 'root' */
+	'database' => 'db_comments', /* 'test' */
+	'dbdriver' => 'pdo', /* 'mysqli' */
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => TRUE,
