@@ -75,13 +75,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	//'port' => 3307, /* 3306 */
-	'port' => 5432,
-	'dsn'	=> 'pgsql:host=ec2-34-235-31-124.compute-1.amazonaws.com;port=5432;dbname=d2tc4oka3e62l2',
-	'hostname' => 'ec2-34-235-31-124.compute-1.amazonaws.com',
-	'username' => 'qsmddvewijjfau',
-	'password' => 'd3e24acc33c502b33e830d199225b559a1e325893ec875fab69f3a1af2ebad30',
-	'database' => 'd2tc4oka3e62l2',
-	'dbdriver' => 'pdo',
+	'port' => $_ENV['DB_PORT'], /* 3306 */
+	'dsn'	=> $_ENV['DB_DSN'], /* 'mysql:host=localhost;dbname=test' */
+	'hostname' => $_ENV['DB_HOST'], /* 'localhost' */
+	'username' => $_ENV['DB_USERNAME'], /* 'root' */
+	'password' => $_ENV['DB_PASSWORD'], /* 'root' */
+	'database' => $_ENV['DB_DATABASE'], /* 'test' */
+	'dbdriver' => $_ENV['DB_DRIVER'], /* 'mysqli' */
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => TRUE,
