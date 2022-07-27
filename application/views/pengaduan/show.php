@@ -1,7 +1,10 @@
 <div class="col-md-12">
   <div class="card">
     <div class="card-header">
-      <div class="row">
+      <div class="card-title">Data Pengaduan</div>
+    </div>
+    <div class="card-body">
+      <div class="row mb-3">
         <div class="col-3">
           <label style="padding: 8px;" class="font-weight-bold">Pemohon : </label><br>
           <select onchange="searchData(2, this.value)" class="form-control option" style="width: 100%" id="pemohon">
@@ -42,8 +45,6 @@
           </select>
         </div>
       </div>
-    </div>
-    <div class="card-body">
       <div class="table-responsive">
         <table id="multi-filter-select" class="display table table-striped table-hover" >
           <thead>
