@@ -164,6 +164,7 @@
                     Swal.fire("Gagal", error.responseJSON.message, "error");
                     return;
                 }
+                console.log(error.responseJSON)
                 Swal.fire("Gagal", "Maaf server sedang sibuk, silahkan coba lagi nanti.", "error");
             }
         });

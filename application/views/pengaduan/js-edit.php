@@ -26,7 +26,7 @@
     form.append("sosmed_link", $("#sosmed-link").val());
     form.append("pic_id", $("#aduan-pic").val());
     $.ajax({
-        method: "PUT",
+        method: "POST",
         url: "<?= base_url('pengaduan/update_aduan') ?>",
         data: form,
         dataType: "json",

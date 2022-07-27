@@ -141,18 +141,27 @@
 			$status = 200;
 
 			try{
-				// $findData = $this->ModelPengaduan->getData([
-				// 	'aduan_id' => $this->input->post("aduan_id")
-				// ])->result();
-				// $path = "./uploads/".$findData[0]->aduan_gambar;
-				// if(file_exists($path)){
-				// 	unlink($path);
-				// }
+				$findData = $this->ModelPengaduan->getData([
+					'aduan_id' => $this->input->post("aduan_id")
+				])->result();
+				if (count($findData) > 0) {
+					$path = "./uploads/".$findData[0]->aduan_gambar;
+					if(file_exists($path)){
+						unlink($path);
+					}
+				} else {
+					$message["message"] = "Data tidak ditemukan";
+					$message["success"] = false;
+					$status = 400;
+					return $this->output->set_status_header($status)
+						->set_content_type('application/json')
+						->set_output(json_encode($message));
+				}
 				
 				// Upload Gambar
-				$config['upload_path'] = './uploads/verifikasi/';
+				$config['upload_path'] = './uploads/';
 				$config['allowed_types'] = 'jpeg|jpg|png';
-				$config['max_size'] = 4096;
+				$config['max_size'] = 2048;
 				$config['encrypt_name'] = true;
 	
 				$this->load->library('upload', $config);
@@ -217,7 +226,7 @@
 					if(file_exists($path)){
 						unlink($path);
 					}
-					if (file_exists($path_verifikasi)) {
+					if ($path_verifikasi != null && file_exists($path_verifikasi)) {
 						unlink($path_verifikasi);
 					}
 				}

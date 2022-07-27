@@ -75,13 +75,13 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	//'port' => 3307, /* 3306 */
-	'port' => 3306,
-	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'root',
-	'password' => '',
+	'port' => 5432,
+	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=db_comments',
+	'hostname' => 'localhost',
+	'username' => 'postgres',
+	'password' => 'root',
 	'database' => 'db_comments',
-	'dbdriver' => 'mysqli',
+	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => TRUE,

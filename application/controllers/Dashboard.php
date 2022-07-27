@@ -36,12 +36,12 @@
 				$year = $this->input->post("tahun");
 				$filterPic = $this->input->post("pic") == 0 ? "<>" : "=";
 				$filter = [
-					"YEAR(trans_aduan.aduan_tanggal) =" => $year,
+					"EXTRACT(YEAR FROM trans_aduan.aduan_tanggal) =" => $year,
 					"trans_aduan.pic_id {$filterPic}" => $this->input->post("pic"),
 				];
 
 				if($this->input->post("periode") == "Bulan"){
-					$filter["MONTH(aduan_tanggal) ="] = $month;
+					$filter["EXTRACT(MONTH FROM trans_aduan.aduan_tanggal) ="] = $month;
 				}
 
 				$result = [];
@@ -56,7 +56,7 @@
 			}
 			catch (\Exception $e) {
 	            log_message('error', $e->getMessage());
-	            $message["message"] = "Terjadi merubah status data pengaduan, silahkan coba lagi";
+	            $message["message"] = "Terjadi merubah status data pengaduan, silahkan coba lagi".strval($e->getMessage());
 	            $message["success"] = false;
 	            $status = 400;
 	        }
@@ -70,7 +70,7 @@
 				$filter, 
 				["jumlah" => "DESC"],
 				"COUNT(*) AS jumlah, master_media.media_nama, master_media.media_icon",
-				"trans_aduan.media_id"
+				"trans_aduan.media_id, master_media.media_nama, master_media.media_icon"
 			)->row();
 		}
 
@@ -79,7 +79,7 @@
 				$filter, 
 				["jumlah" => "DESC"],
 				"COUNT(*) AS jumlah, master_pic.pic_nama",
-				"trans_aduan.pic_id"
+				"trans_aduan.pic_id, master_media.media_nama, master_pic.pic_nama"
 			)->row();
 		}
 
