@@ -76,11 +76,11 @@ $query_builder = TRUE;
 $db['default'] = array(
 	//'port' => 3307, /* 3306 */
 	'port' => 5432,
-	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=db_comments',
-	'hostname' => 'localhost',
-	'username' => 'postgres',
-	'password' => 'root',
-	'database' => 'db_comments',
+	'dsn'	=> 'pgsql:host=ec2-34-235-31-124.compute-1.amazonaws.com;port=5432;dbname=d2tc4oka3e62l2',
+	'hostname' => 'ec2-34-235-31-124.compute-1.amazonaws.com',
+	'username' => 'qsmddvewijjfau',
+	'password' => 'd3e24acc33c502b33e830d199225b559a1e325893ec875fab69f3a1af2ebad30',
+	'database' => 'd2tc4oka3e62l2',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
