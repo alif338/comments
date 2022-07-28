@@ -3,7 +3,10 @@
     <div class="logo-header" data-background-color="blue">
 
         <a href="index.html" class="logo text-light">
-            REKAP PENGADUAN
+            <div class="container-fluid d-flex justify-content-around align-items-center">
+                <img src="<?= base_url('assets/img/dishub.png'); ?>" width="auto" height="50rem" alt="" class="pr-3"/>
+                <img src="<?= base_url('assets/img/jabar.png'); ?>" width="auto" height="60rem" alt=""/>
+            </div>
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -21,9 +24,10 @@
 
     <!-- Navbar Header -->
     <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
-
         <div class="container-fluid">
-            <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+            <ul class="navbar-nav w-100 align-items-center">
+                <li class="w-100"><h1 class="text-light text-center m-auto">REKAP PENGADUAN</h1></li>
+                
                 <li class="nav-item dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                         <div class="avatar-sm">
