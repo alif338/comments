@@ -66,5 +66,8 @@
         }
       ?>
     </div>
+    <div class="card-footer">
+      <button onclick="history.back()" class="btn btn-default">Kembali</button>
+    </div>
   </div>
 </div>
