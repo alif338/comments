@@ -21,6 +21,41 @@
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     });
+
+    function changeProfile(element) {
+        console.log("PROFILE CLICKED")
+        Swal.fire({
+            title: 'Ubah Profil',
+            html: `<div id="img-show">
+                <img src="<?= base_url('./uploads/profil/profil.jpg')?>" alt="profil" class="img-fluid" style="width: 500px;">    
+            </div>`,
+            showCancelButton: true,
+            showDenyButton: true,
+            allowOutsideClick: true,
+            input: 'file',
+            inputValidator: (result) => {
+                return !result && 'Gambar diperlukan'
+            },
+            confirmButtonColor: '#31ce36',
+            confirmButtonText: 'Simpan',
+            denyButtonText: 'Hapus',       
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'error')
+            }
+        });
+
+        const profilGambar = document.getElementsByClassName("swal2-file")[0];
+        const imgShow = document.getElementById("img-show");
+        profilGambar.onchange = function() {
+            const [file] = profilGambar.files;
+            if (file) {
+                imgShow.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="${file.name}" class="img-fluid" style="width: 500px;">`;
+            }
+        };
+    }
 </script>
 <?php
 if (isset($js)) {

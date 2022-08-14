@@ -118,5 +118,25 @@
 			}
 			return $result;
 		}
+
+		public function update_profile() {
+			if(!$this->session->userdata('is_login')){
+				redirect('/', 'refresh');
+			}
+			$message = [
+				"message" => "Status data pengaduan berhasil dirubah.",
+				"data" => null,
+				"success" => true,
+			];
+			$status = 200;
+		
+			// Upload Gambar
+			$config['upload_path'] = './uploads/profil/';
+			$config['allowed_types'] = 'jpeg|jpg|png';
+			$config['max_size'] = 2048;
+			$config['encrypt_name'] = true;
+		
+			$this->load->library('upload', $config);
+		}
 	}
 ?>
