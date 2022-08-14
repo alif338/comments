@@ -2,17 +2,25 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <div class="user">
-                <div class="avatar-sm float-left mr-2">
-                    <span class="avatar-title bg-danger rounded-circle border border-white text-light" style="font-weight: bold;">K
+                <div class="avatar-sm float-left mr-2" style="z-index: 99;">
+                    <span class="avatar-title bg-danger rounded-circle border border-white text-light" style="font-weight: bold;">
+                        <a href="#" onclick="changeProfile(this)">
+                            <?php 
+                                $directory = './uploads/profil/profil.jpg';
+                                if (file_exists($directory)) {
+                                    echo "<img src=\"$directory\" alt=\"profil\" style=\"width: 100%; border-radius: 50px;\">";
+                                } else {
+                                    echo strval(file_exists($directory));
+                                }
+                            ?>
+                        </a>
                     </span>
                 </div>
                 <div class="info">
-                    <a>
-                        <span>
-                            Admin
-                            <span class="user-level">Administrator</span>
-                        </span>
-                    </a>
+                    <span style="color: black;">
+                        Admin
+                        <span class="user-level">Administrator</span>
+                    </span>
                     <div class="clearfix"></div>
 
                 </div>
