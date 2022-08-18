@@ -23,9 +23,9 @@
                         <span class="user-level">Administrator</span>
                     </span>
                     <div class="clearfix"></div>
-
                 </div>
             </div>
+
             <ul class="nav nav-primary">
                 <li class="nav-item <?= activeMenu("dashboard", isset($active) ? $active : ''); ?>">
                     <a href="<?= base_url('/dashboard') ?>">
