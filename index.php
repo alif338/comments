@@ -54,6 +54,9 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
+	require 'vendor/autoload.php';
+	$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+	$dotenv->safeLoad();
 
 /*
  *---------------------------------------------------------------
@@ -315,6 +318,3 @@ switch (ENVIRONMENT)
  */
 require_once BASEPATH.'core/CodeIgniter.php';
 
-require 'vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->safeLoad();
