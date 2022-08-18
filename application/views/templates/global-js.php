@@ -23,7 +23,6 @@
     });
 
     function changeProfile(element) {
-        console.log("PROFILE CLICKED")
         Swal.fire({
             title: 'Ubah Profil',
             html: `<div id="img-show">
@@ -33,6 +32,10 @@
             showDenyButton: true,
             allowOutsideClick: true,
             input: 'file',
+            inputAttributes: {
+                'accept': 'image/*',
+                'aria-label': 'Upload your profile picture'
+            },
             inputValidator: (result) => {
                 return !result && 'Gambar diperlukan'
             },
@@ -41,7 +44,7 @@
             denyButtonText: 'Hapus',       
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire('Saved!', '', 'success')
+                updateProfile(result.value)
             } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'error')
             }
@@ -56,6 +59,60 @@
             }
         };
     }
+
+    function updateProfile(image) {
+        Swal.fire({
+            title: 'Mengirim...',
+            text: 'Mohon tunggu beberapa saat',
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+
+        var form = new FormData()
+        form.append("profil_gambar", image)
+
+        $.ajax({
+            type: "POST",
+            url: "<?=base_url ('dashboard/update_profile')?>",
+            data: form,
+            dataType: "json",
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(result) {
+                var content = {};
+                content.message = result.message;
+                content.title = 'Berhasil';
+                content.icon = 'fa fa-check';
+                content.url = '#';
+
+                Swal.close();
+                $.notify(content,{
+                    type: "info",
+                    placement: {
+                        from: "bottom",
+                        align: "right"
+                    },
+                    time: 1000,
+                    delay: 0,
+                });
+                window.location.reload();
+            },
+            error: function(error) {
+                if (error.status == 400) {
+                    Swal.fire("Gagal", error.responseJSON.message, "error");
+                    return;
+                }
+                Swal.fire("Gagal", "Maaf server sedang sibuk, silahkan coba lagi nanti.", "error");
+            }
+        })
+    }
+
+    function testHello() {
+        console.log("HELLO")
+    }
+
+    testHello()
 </script>
 <?php
 if (isset($js)) {

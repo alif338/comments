@@ -120,7 +120,7 @@
 			}
 			catch (\Exception $e) {
 	            log_message('error', $e->getMessage());
-	            $message["message"] = "Terjadi merubah status data pengaduan, silahkan coba lagi";
+	            $message["message"] = "Terjadi kesalahan merubah status data pengaduan, silahkan coba lagi";
 	            $message["success"] = false;
 	            $status = 400;
 	        }

@@ -129,14 +129,29 @@
 				"success" => true,
 			];
 			$status = 200;
-		
+
 			// Upload Gambar
 			$config['upload_path'] = './uploads/profil/';
-			$config['allowed_types'] = 'jpeg|jpg|png';
+			$config['allowed_types'] = 'jpg';
 			$config['max_size'] = 2048;
-			$config['encrypt_name'] = true;
-		
+			$config['file_name'] = 'profil';
+			$config['overwrite'] = true;
+			
 			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('profil_gambar'))
+			{
+				$status = 400;
+				$message["message"] = "Pastikan ukuran gambar dibawah 2MB dengan format .jpg";
+				$message["success"] = false;
+				
+				return $this->output->set_status_header($status)
+				->set_content_type('application/json')
+				->set_output(json_encode($message));
+			}
+			
+			return $this->output->set_status_header($status)
+				->set_content_type('application/json')
+				->set_output(json_encode($message));
 		}
 	}
 ?>
