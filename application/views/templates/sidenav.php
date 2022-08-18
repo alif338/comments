@@ -3,18 +3,19 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2" style="z-index: 99;">
-                    <span class="avatar-title bg-danger rounded-circle border border-white text-light" style="font-weight: bold;">
-                        <a href="#" onclick="changeProfile(this)">
+                    <a href="#" onclick="changeProfile(this)">
+                        <span class="avatar-title bg-danger rounded-circle border border-white text-light" style="font-weight: bold;">
                             <?php 
                                 $directory = './uploads/profil/profil.jpg';
+                                $url_dir = base_url('uploads/profil/profil.jpg');
                                 if (file_exists($directory)) {
-                                    echo "<img src=\"$directory\" alt=\"profil\" style=\"width: 100%; border-radius: 50px;\">";
+                                    echo "<img src=\"$url_dir\" alt=\"profil\" style=\"width: 100%; border-radius: 50px;\">";
                                 } else {
-                                    echo strval(file_exists($directory));
+                                    echo strval(file_exists($url_dir));
                                 }
                             ?>
-                        </a>
-                    </span>
+                        </span>
+                    </a>
                 </div>
                 <div class="info">
                     <span style="color: black;">
