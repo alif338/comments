@@ -7,6 +7,7 @@
 			$this->load->library('session');
 			$this->load->helper('url');
 			$this->load->model("Pic/ModelPic");
+			$this->load->model("Profil/ModelProfile");
 			$this->load->model("Pengaduan/ModelPengaduan");
 		}
 
@@ -148,6 +149,19 @@
 				->set_content_type('application/json')
 				->set_output(json_encode($message));
 			}
+
+			try{
+				$this->ModelProfile->updateProfil(
+					1, ['nama' => $this->input->post('profil_nama')]
+				);
+				$this->session->set_userdata('profil', $this->input->post('profil_nama'));
+			}
+			catch (\Exception $e) {
+						log_message('error', $e->getMessage());
+						$message["message"] = "Terjadi kesalahan merubah status data pengaduan, silahkan coba lagi";
+						$message["success"] = false;
+						$status = 400;
+				}
 			
 			return $this->output->set_status_header($status)
 				->set_content_type('application/json')

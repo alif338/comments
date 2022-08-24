@@ -19,7 +19,7 @@
                 </div>
                 <div class="info">
                     <span style="color: black;">
-                        Admin
+                        <?= strval($this->session->userdata('profil')) ?>
                         <span class="user-level">Administrator</span>
                     </span>
                     <div class="clearfix"></div>

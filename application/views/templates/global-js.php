@@ -26,25 +26,42 @@
         Swal.fire({
             title: 'Ubah Profil',
             html: `<div id="img-show">
-                <img src="<?= base_url('./uploads/profil/profil.jpg')?>" alt="profil" class="img-fluid" style="width: 500px;">    
+                <img src="<?= base_url('./uploads/profil/profil.jpg')?>" id="profile-img" alt="profil" class="img-fluid" style="width: 500px;">    
+                <label for="profile-account" class="profile-title">Nama Akun</label>
+                <input type="text" id="profile-account" class="form-control" placeholder="Nama Akun" value="<?= strval($this->session->userdata('profil')) ?>">
             </div>`,
             showCancelButton: true,
             showDenyButton: true,
             allowOutsideClick: true,
+            backdrop: true,
             input: 'file',
             inputAttributes: {
                 'accept': 'image/*',
                 'aria-label': 'Upload your profile picture'
             },
             inputValidator: (result) => {
-                return !result && 'Gambar diperlukan'
+                let exist = '<?= file_exists('./uploads/profil/profil.jpg') ?>';
+                if (!exist) {
+                    return "Gambar diperlukan"
+                }
+                // return !result && 'Gambar diperlukan'
             },
             confirmButtonColor: '#31ce36',
             confirmButtonText: 'Simpan',
             denyButtonText: 'Hapus',       
-        }).then((result) => {
+        }).then(async (result) => {
+            let account = $('#profile-account').val();
             if (result.isConfirmed) {
-                updateProfile(result.value)
+                if (!result.value) {
+                    await fetch(document.getElementById("profile-img").src)
+                        .then(async response => {
+                            let blob = await response.blob()
+                            let file = new File([blob], 'profil.jpg', { type: 'image/jpg' })
+                            updateProfile(file, account);
+                        })
+                } else {
+                    updateProfile(result.value, account);
+                }
             } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'error')
             }
@@ -55,12 +72,16 @@
         profilGambar.onchange = function() {
             const [file] = profilGambar.files;
             if (file) {
-                imgShow.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="${file.name}" class="img-fluid" style="width: 500px;">`;
+                imgShow.innerHTML = `
+                    <img src="${URL.createObjectURL(file)}" id="profile-img" alt="${file.name}" class="img-fluid" style="width: 500px;">
+                    <label for="profile-account" class="profile-title">Nama Akun</label>
+                    <input type="text" id="profile-account" class="form-control" placeholder="Nama Akun" value="<?= strval($this->session->userdata('profil')) ?>">
+                `;
             }
         };
     }
 
-    function updateProfile(image) {
+    function updateProfile(image, profile) {
         Swal.fire({
             title: 'Mengirim...',
             text: 'Mohon tunggu beberapa saat',
@@ -70,6 +91,8 @@
 
         var form = new FormData()
         form.append("profil_gambar", image)
+        form.append("profil_nama", profile)
+        console.log(profile)
 
         $.ajax({
             type: "POST",
@@ -103,7 +126,7 @@
                     Swal.fire("Gagal", error.responseJSON.message, "error");
                     return;
                 }
-                Swal.fire("Gagal", "Maaf server sedang sibuk, silahkan coba lagi nanti.", "error");
+                Swal.fire("Gagal", error.responseJSON, "error");
             }
         })
     }
