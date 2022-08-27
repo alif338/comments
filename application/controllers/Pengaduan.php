@@ -101,7 +101,7 @@
 			// Upload Gambar
 			$config['upload_path'] = './uploads/verifikasi/';
 			$config['allowed_types'] = 'jpeg|jpg|png';
-			$config['max_size'] = 2048;
+			$config['max_size'] = 5120;
 			$config['encrypt_name'] = true;
 
 			$this->load->library('upload', $config);
