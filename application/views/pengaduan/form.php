@@ -132,8 +132,8 @@
 				</div>
 				<div class="card-footer">
 					<button type="submit" class="btn btn-success">Simpan</button>
-					<button type="reset" class="btn btn-warning ml-2">Bersihkan</button>
-					<button onclick="history.back()" class="btn btn-default ml-2">Kembali</button>
+					<button type="reset" class="btn btn-warning">Bersihkan</button>
+					<button onclick="history.back()" class="btn btn-default">Kembali</button>
 				</div>
 			</form>
 		</div>
