@@ -19,6 +19,9 @@
 			$data["active"] = "dashboard";
 			$data["content"] = "dashboard/main";
 			$data["js"] = "dashboard/js-main";
+			$profilData = $this->ModelProfile->getProfil()->result();
+			$this->session->set_userdata('profil', strval($profilData[0]->nama));
+			$this->session->set_userdata('avatar', strval($profilData[0]->profil_gambar));
 			$this->load->view('templates/content', $data);
 		}
 
@@ -131,11 +134,25 @@
 			];
 			$status = 200;
 
+			$findData = $this->ModelProfile->getProfil()->result();
+			if (count($findData) > 0) {
+				$path = "./uploads/profil/".$findData[0]->profil_gambar;
+				if(file_exists($path)){
+					unlink($path);
+				}
+			} else {
+				$message["message"] = "Data tidak ditemukan";
+				$message["success"] = false;
+				$status = 400;
+				return $this->output->set_status_header($status)
+					->set_content_type('application/json')
+					->set_output(json_encode($message));
+			}
+
 			// Upload Gambar
 			$config['upload_path'] = './uploads/profil/';
-			$config['allowed_types'] = 'jpg';
+			$config['allowed_types'] = 'jpeg|jpg|png';
 			$config['max_size'] = 2048;
-			$config['file_name'] = 'profil';
 			$config['overwrite'] = true;
 			
 			$this->load->library('upload', $config);
@@ -150,11 +167,14 @@
 				->set_output(json_encode($message));
 			}
 
+			$upload_data = $this->upload->data();
 			try{
 				$this->ModelProfile->updateProfil(
-					1, ['nama' => $this->input->post('profil_nama')]
+					1, ['nama' => $this->input->post('profil_nama'), 'profil_gambar' => $upload_data['file_name']]
 				);
 				$this->session->set_userdata('profil', $this->input->post('profil_nama'));
+				$this->session->set_userdata('avatar', $upload_data['file_name']);
+
 			}
 			catch (\Exception $e) {
 						log_message('error', $e->getMessage());

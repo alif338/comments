@@ -40,7 +40,7 @@
                 'aria-label': 'Upload your profile picture'
             },
             inputValidator: (result) => {
-                let exist = '<?= file_exists('./uploads/profil/profil.jpg') ?>';
+                let exist = document.getElementById('profile-img').src;
                 if (!exist) {
                     return "Gambar diperlukan"
                 }

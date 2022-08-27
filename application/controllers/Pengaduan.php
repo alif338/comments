@@ -9,6 +9,7 @@
 			$this->load->model("Pic/ModelPic");
 			$this->load->model("Media/ModelMedia");
 			$this->load->model("Pengaduan/ModelPengaduan");
+			$this->load->model("Profil/ModelProfile");
 		}
 
 		public function index() {
@@ -24,10 +25,14 @@
 				),
 				true
 			);
+
+			$profilData = $this->ModelProfile->getProfil()->result();
 			$data["active"] = "pengaduan";
 			$data["css"] = "pengaduan/css-form";
 			$data["js"] = "pengaduan/js-form";
 			$data["content"] = "pengaduan/form";
+			$this->session->set_userdata('profil', strval($profilData[0]->nama));
+			$this->session->set_userdata('avatar', strval($profilData[0]->profil_gambar));
 			$this->load->view('templates/content', $data);
 		}
 
