@@ -6,8 +6,8 @@
                     <a href="#" onclick="changeProfile(this)">
                         <span class="avatar-title bg-danger rounded-circle border border-white text-light" style="font-weight: bold;">
                             <?php 
-                                $directory = './uploads/profil/profil.jpg';
-                                $url_dir = base_url('uploads/profil/profil.jpg');
+                                $directory = './uploads/profil/'.$this->session->userdata('avatar');
+                                $url_dir = base_url('uploads/profil/'.$this->session->userdata('avatar'));
                                 if (file_exists($directory)) {
                                     echo "<img src=\"$url_dir\" alt=\"profil\" style=\"width: 100%; border-radius: 50px;\">";
                                 } else {

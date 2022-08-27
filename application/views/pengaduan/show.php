@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <div class="row mb-3">
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
           <label style="padding: 8px;" class="font-weight-bold">Pemohon : </label><br>
           <select onchange="searchData(2, this.value)" class="form-control option" style="width: 100%" id="pemohon">
             <option value="">Semua Pemohon</option>
@@ -14,7 +14,7 @@
             <option value="<?= KELOMPOK ?>"><?= KELOMPOK ?></option>
           </select>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
           <label style="padding: 8px;" class="font-weight-bold">Media : </label><br>
           <select onchange="searchData(3, this.value)" class="form-control option" style="width: 100%" id="media">
             <option value="">Semua Media</option>
@@ -25,7 +25,7 @@
             ?>
           </select>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
           <label style="padding: 8px;" class="font-weight-bold">PIC : </label><br>
           <select onchange="searchData(4, this.value)" class="form-control option" style="width: 100%" id="pic">
             <option value="">Semua PIC</option>
@@ -36,7 +36,7 @@
             ?>
           </select>
         </div>
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
           <label style="padding: 8px;" class="font-weight-bold">Status : </label><br>
           <select onchange="searchData(5, this.value)" class="form-control option" style="width: 100%" id="status-pengajuan">
             <option value="">Semua Status</option>

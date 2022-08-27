@@ -4,4 +4,17 @@
     font-size: 14px !important;
     padding: 8px !important;
   }
+
+  .img-detail {
+    max-width: 500px;
+    border: 1px solid;
+    margin-bottom: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .img-detail {
+      max-width: 70vw;
+    }
+    
+  }
 </style>

@@ -45,6 +45,7 @@
 					$profil = $this->ModelProfile->getProfil()->result();
 					$this->session->set_userdata('is_login', true);
 					$this->session->set_userdata('profil', strval($profil[0]->nama));
+					$this->session->set_userdata('avatar', strval($profil[0]->profil_gambar));
 				}
 			}
 			catch (\Exception $e) {

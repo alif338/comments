@@ -8,7 +8,7 @@
     </div>
     <div class="card-body">
       <div class="col-12 form-inline">
-        <div class="col-2">
+        <div class="col-6 col-lg-2">
           <strong><p>Media</p></strong>
         </div>
         <div class="col-6">
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="col-12 form-inline">
-        <div class="col-2">
+        <div class="col-6 col-lg-2">
           <strong><p>Pemohon</p></strong>
         </div>
         <div class="col-6">
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="col-12 form-inline">
-        <div class="col-2">
+        <div class="col-6 col-lg-2">
           <strong><p>Tanggal Aduan</p></strong>
         </div>
         <div class="col-6">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="col-12 form-inline">
-        <div class="col-2">
+        <div class="col-6 col-lg-2">
           <strong><p>PIC/Penanggung Jawab</p></strong>
         </div>
         <div class="col-6">
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="col-12 form-inline">
-        <div class="col-2">
+        <div class="col-6 col-lg-2">
           <strong><p>Perihal</p></strong>
         </div>
         <div class="col-6">
@@ -48,7 +48,7 @@
         </div>
       </div>
       <div class="col-12 form-inline">
-        <div class="col-2">
+        <div class="col-6 col-lg-2">
           <strong><p>Status</p></strong>
         </div>
         <div class="col-6">
@@ -56,13 +56,13 @@
         </div>
       </div>
       <strong><u><h4>Bukti Foto Aduan</h4></u></strong>
-      <img src="<?= base_url('./uploads/'.$data->aduan_gambar) ?>" alt="aduan gambar" style="max-width: 500px; border: 1px solid; margin-bottom: 10px;"/>
+      <img src="<?= base_url('./uploads/'.$data->aduan_gambar) ?>" alt="aduan gambar" class="img-detail"/>
       <strong><u><h4>Bukti Foto Sudah Diproses</h4></u></strong>
       <?php 
         if($data->verifikasi_gambar == null){ 
           echo "<i><p>Tidak ada foto yang diproses</p></i>";
         } else {
-          echo "<img src='".base_url('./uploads/verifikasi/'.$data->verifikasi_gambar)."' alt='verifikasi gambar' style='max-width: 500px; border: 1px solid; margin-bottom: 10px;'/>";
+          echo "<img src='".base_url('./uploads/verifikasi/'.$data->verifikasi_gambar)."' alt='verifikasi gambar' class='img-detail'/>";
         }
       ?>
     </div>

@@ -26,7 +26,7 @@
         Swal.fire({
             title: 'Ubah Profil',
             html: `<div id="img-show">
-                <img src="<?= base_url('./uploads/profil/profil.jpg')?>" id="profile-img" alt="profil" class="img-fluid" style="width: 500px;">    
+                <img src="<?= base_url('uploads/profil/'.$this->session->userdata('avatar'))?>" id="profile-img" alt="profil" class="img-fluid" style="width: 500px;">    
                 <label for="profile-account" class="profile-title">Nama Akun</label>
                 <input type="text" id="profile-account" class="form-control" placeholder="Nama Akun" value="<?= strval($this->session->userdata('profil')) ?>">
             </div>`,
@@ -56,7 +56,7 @@
                     await fetch(document.getElementById("profile-img").src)
                         .then(async response => {
                             let blob = await response.blob()
-                            let file = new File([blob], 'profil.jpg', { type: 'image/jpg' })
+                            let file = new File([blob], response.url.split('/').pop(), { type: 'image/jpg' })
                             updateProfile(file, account);
                         })
                 } else {
@@ -104,7 +104,7 @@
             processData: false,
             success: function(result) {
                 var content = {};
-                content.message = result.message;
+                content.message = 'Profil berhasil diupdate';
                 content.title = 'Berhasil';
                 content.icon = 'fa fa-check';
                 content.url = '#';
