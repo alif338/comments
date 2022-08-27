@@ -1,7 +1,7 @@
 <!-- Card -->
 <div class="card">
   <div class="card-body row">
-    <div class="col-3">
+    <div class="col-12 col-lg-3">
       <div class="form-group">
         <label for="periode">Periode</label>
         <select class="form-control" id="periode">
@@ -10,7 +10,7 @@
         </select>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-12 col-lg-3">
       <div class="form-group">
         <label for="bulan">Bulan</label>
         <select class="form-control" id="bulan">
@@ -29,7 +29,7 @@
         </select>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-12 col-lg-3">
       <div class="form-group">
         <label for="tahun">Tahun</label>
         <select class="form-control" id="tahun">
@@ -41,7 +41,7 @@
         </select>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-12 col-lg-3">
       <div class="form-group">
         <label for="pic">PIC</label>
         <select class="form-control" id="pic">
