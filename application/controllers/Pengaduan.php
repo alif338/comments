@@ -26,11 +26,11 @@
 				true
 			);
 
-			$profilData = $this->ModelProfile->getProfil()->result();
 			$data["active"] = "pengaduan";
 			$data["css"] = "pengaduan/css-form";
 			$data["js"] = "pengaduan/js-form";
 			$data["content"] = "pengaduan/form";
+			$profilData = $this->ModelProfile->getProfil()->result();
 			$this->session->set_userdata('profil', strval($profilData[0]->nama));
 			$this->session->set_userdata('avatar', strval($profilData[0]->profil_gambar));
 			$this->load->view('templates/content', $data);
@@ -47,6 +47,10 @@
 			$data["js"] = "pengaduan/js-show";
 			$data["css"] = "pengaduan/css-show";
 			$data["content"] = "pengaduan/show";
+
+			$profilData = $this->ModelProfile->getProfil()->result();
+			$this->session->set_userdata('profil', strval($profilData[0]->nama));
+			$this->session->set_userdata('avatar', strval($profilData[0]->profil_gambar));
 			$this->load->view('templates/content', $data);
 		}
 
