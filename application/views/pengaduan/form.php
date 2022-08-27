@@ -133,7 +133,7 @@
 				<div class="card-footer">
 					<button type="submit" class="btn btn-success mb-2 col-12 col-lg-1">Simpan</button>
 					<button type="reset" class="btn btn-warning mb-2 col-12 col-lg-1">Bersihkan</button>
-					<button onclick="history.back()" class="btn btn-info mb-2 col-12 col-lg-1">Kembali</button>
+					<button onclick="history.back()" class="btn btn-default mb-2 col-12 col-lg-1">Kembali</button>
 				</div>
 			</form>
 		</div>
