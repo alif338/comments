@@ -235,7 +235,7 @@
 					if(file_exists($path)){
 						unlink($path);
 					}
-					if ($path_verifikasi != null && file_exists($path_verifikasi)) {
+					if ($findData[0]->verifikasi_gambar != '' && file_exists($path_verifikasi)) {
 						unlink($path_verifikasi);
 					}
 				}
