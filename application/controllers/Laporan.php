@@ -50,12 +50,12 @@ class Laporan extends CI_Controller {
 
 				$filterPic = $pic == 0 ? "<>" : "=";
 				$filter = [
-					"YEAR(trans_aduan.aduan_tanggal) =" => $year,
+					"EXTRACT(YEAR FROM trans_aduan.aduan_tanggal) =" => $year,
 					"trans_aduan.pic_id {$filterPic}" => $this->input->post("pic"),
 				];
 
 				if($periode == "Bulan"){
-					$filter["MONTH(aduan_tanggal) ="] = $month;
+					$filter["EXTRACT(MONTH FROM aduan_tanggal) ="] = $month;
 				}else{
 					$limitTanggal = cal_days_in_month(CAL_GREGORIAN, $i, $year);
 					$filter["trans_aduan.aduan_tanggal >="] = "{$year}-{$i}-01";
@@ -108,6 +108,10 @@ class Laporan extends CI_Controller {
 		catch (\Exception $e) {
 	    	log_message('error', $e->getMessage());
 	    }
+	}
+
+	public function test() {
+		log_message('error', 'hanya untuk testing');
 	}
 }
 ?>
